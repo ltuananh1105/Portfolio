@@ -1,5 +1,4 @@
 import React from "react";
-import GitHubCalendar from "react-github-calendar";
 import { Row } from "react-bootstrap";
 
 function Github() {
@@ -12,15 +11,13 @@ function Github() {
       }}
     >
       <h1 className="project-heading pb-4" style={{ paddingBottom: "20px" }}>
-        Days I <strong className="purple">Code</strong>
+        GitHub <strong className="purple">Profile</strong>
       </h1>
-      <GitHubCalendar
-        username="soumyajit4419"
-        blockSize={30}
-        blockMargin={10}
-        color="#c084f5"
-        fontSize={20}
-      />
+      <p style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto" }}>
+        I use GitHub to store and share coursework, system analysis artifacts,
+        and technical experiments related to my Business Analyst and MIS
+        learning path.
+      </p>
     </Row>
   );
 }

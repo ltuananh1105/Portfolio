@@ -1,0 +1,11 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="360" rx="28" fill="#1B2236"/>
+  <rect x="36" y="42" width="568" height="278" rx="18" fill="#1F2D45" stroke="#7CB9FF" stroke-width="2"/>
+  <rect x="68" y="84" width="120" height="88" rx="16" fill="#3E5D8C"/>
+  <rect x="210" y="84" width="156" height="26" rx="8" fill="#5F83BF"/>
+  <rect x="210" y="124" width="228" height="26" rx="8" fill="#5F83BF"/>
+  <rect x="210" y="164" width="180" height="26" rx="8" fill="#5F83BF"/>
+  <rect x="68" y="194" width="520" height="84" rx="16" fill="#2D4A6D"/>
+  <text x="68" y="68" fill="#E2F1FF" font-size="28" font-weight="700" font-family="Arial, sans-serif">BeLand</text>
+  <text x="68" y="304" fill="#B7D6FF" font-size="20" font-weight="600" font-family="Arial, sans-serif">Rental Management System</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="360" rx="28" fill="#241D2D"/>
+  <rect x="36" y="42" width="568" height="276" rx="18" fill="#2D2338" stroke="#E7B0FF" stroke-width="2"/>
+  <rect x="76" y="94" width="180" height="178" rx="16" fill="#4B2E5E"/>
+  <rect x="282" y="94" width="270" height="26" rx="8" fill="#7A4D8C"/>
+  <rect x="282" y="140" width="240" height="22" rx="8" fill="#7A4D8C"/>
+  <rect x="282" y="178" width="220" height="22" rx="8" fill="#7A4D8C"/>
+  <rect x="282" y="216" width="190" height="22" rx="8" fill="#7A4D8C"/>
+  <text x="76" y="68" fill="#F7E7FF" font-size="28" font-weight="700" font-family="Arial, sans-serif">Milk Tea Management System</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="24" fill="#1B1B2F"/>
+  <path d="M35 48C41 58 50 66 64 66C78 66 87 58 93 48V84C87 94 78 102 64 102C50 102 41 94 35 84V48Z" fill="#6DB33F"/>
+  <path d="M64 36C74 36 82 40 88 48" stroke="#9BE564" stroke-width="4" stroke-linecap="round"/>
+  <text x="64" y="116" text-anchor="middle" fill="#FFFFFF" font-size="14" font-weight="700" font-family="Arial, sans-serif">Spring Boot</text>
+</svg>

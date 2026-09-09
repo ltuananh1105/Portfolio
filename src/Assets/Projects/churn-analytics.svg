@@ -1,0 +1,15 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="360" rx="28" fill="#1A2334"/>
+  <rect x="40" y="36" width="560" height="288" rx="18" fill="#1F2B3C" stroke="#69D2E7" stroke-width="2"/>
+  <line x1="100" y1="270" x2="540" y2="270" stroke="#9CC7FF" stroke-width="2"/>
+  <path d="M100 245L170 210L240 195L310 170L380 140L450 120L540 85" stroke="#6EE7F9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="100" cy="245" r="6" fill="#6EE7F9"/>
+  <circle cx="170" cy="210" r="6" fill="#6EE7F9"/>
+  <circle cx="240" cy="195" r="6" fill="#6EE7F9"/>
+  <circle cx="310" cy="170" r="6" fill="#6EE7F9"/>
+  <circle cx="380" cy="140" r="6" fill="#6EE7F9"/>
+  <circle cx="450" cy="120" r="6" fill="#6EE7F9"/>
+  <circle cx="540" cy="85" r="6" fill="#6EE7F9"/>
+  <text x="64" y="78" fill="#E0F7FF" font-size="28" font-weight="700" font-family="Arial, sans-serif">Customer Churn Analysis</text>
+  <text x="64" y="302" fill="#A7D8FF" font-size="20" font-weight="600" font-family="Arial, sans-serif">SQL • Power BI • Retention Priority</text>
+</svg>

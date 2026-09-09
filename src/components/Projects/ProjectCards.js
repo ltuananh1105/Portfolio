@@ -6,35 +6,58 @@ import { BsGithub } from "react-icons/bs";
 
 function ProjectCards(props) {
   return (
-    <Card className="project-card-view">
+    <Card
+      className={`project-card-view${props.featured ? " featured-card" : ""}`}
+    >
       <Card.Img variant="top" src={props.imgPath} alt="card-img" />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
         <Card.Text style={{ textAlign: "justify" }}>
           {props.description}
         </Card.Text>
-        <Button variant="primary" href={props.ghLink} target="_blank">
-          <BsGithub /> &nbsp;
-          {props.isBlog ? "Blog" : "GitHub"}
-        </Button>
-        {"\n"}
-        {"\n"}
 
-        {/* If the component contains Demo link and if it's not a Blog then, it will render the below component  */}
+        {props.tags && (
+          <div className="project-tags">
+            {props.tags.map((tag) => (
+              <span key={tag} className="project-tag">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {props.ghLink && (
+          <Button variant="primary" href={props.ghLink} target="_blank">
+            <BsGithub /> &nbsp;
+            {props.isBlog ? "Blog" : "GitHub"}
+          </Button>
+        )}
+
+        {props.caseStudyLink && (
+          <Button
+            variant="primary"
+            href={props.caseStudyLink}
+            style={{ marginLeft: props.ghLink ? "10px" : "0" }}
+          >
+            <CgWebsite /> &nbsp; Case Study
+          </Button>
+        )}
 
         {!props.isBlog && props.demoLink && (
           <Button
             variant="primary"
             href={props.demoLink}
             target="_blank"
-            style={{ marginLeft: "10px" }}
+            style={{
+              marginLeft: props.ghLink || props.caseStudyLink ? "10px" : "0",
+            }}
           >
-            <CgWebsite /> &nbsp;
-            {"Demo"}
+            <CgWebsite /> &nbsp; Demo
           </Button>
         )}
       </Card.Body>
     </Card>
   );
 }
+
 export default ProjectCards;

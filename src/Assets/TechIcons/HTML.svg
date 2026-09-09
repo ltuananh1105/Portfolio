@@ -1,0 +1,6 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="24" fill="#1C2335"/>
+  <path d="M34 28H94L86 92L64 102L42 92L34 28Z" fill="#FF5A5F"/>
+  <path d="M50 50H78L76 62H52L54 76L64 80L74 76L75 70H54" fill="#FDE68A"/>
+  <text x="64" y="112" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial, sans-serif">HTML</text>
+</svg>

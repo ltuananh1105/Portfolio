@@ -1,0 +1,11 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="640" height="360" rx="28" fill="#201334"/>
+  <rect x="38" y="34" width="564" height="292" rx="18" fill="#2B1A3D" stroke="#B36CF6" stroke-width="2"/>
+  <rect x="64" y="102" width="188" height="136" rx="12" fill="#3A2354"/>
+  <rect x="282" y="102" width="292" height="42" rx="12" fill="#4F2E6B"/>
+  <rect x="282" y="158" width="292" height="24" rx="10" fill="#4F2E6B"/>
+  <rect x="282" y="196" width="260" height="24" rx="10" fill="#4F2E6B"/>
+  <rect x="282" y="234" width="214" height="24" rx="10" fill="#4F2E6B"/>
+  <text x="64" y="78" fill="#F3E8FF" font-size="28" font-weight="700" font-family="Arial, sans-serif">LearnUp</text>
+  <text x="64" y="286" fill="#D4B5F7" font-size="22" font-weight="600" font-family="Arial, sans-serif">English Learning Platform</text>
+</svg>

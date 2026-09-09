@@ -2,12 +2,11 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
-import leaf from "../../Assets/Projects/leaf.png";
-import emotion from "../../Assets/Projects/emotion.png";
-import editor from "../../Assets/Projects/codeEditor.png";
-import chatify from "../../Assets/Projects/chatify.png";
-import suicide from "../../Assets/Projects/suicide.png";
-import bitsOfCode from "../../Assets/Projects/blog.png";
+import learnupPlaceholder from "../../Assets/Projects/learnup-placeholder.svg";
+import churnPlaceholder from "../../Assets/Projects/churn-analytics.svg";
+import belandPlaceholder from "../../Assets/Projects/beland-placeholder.svg";
+import universityPlaceholder from "../../Assets/Projects/university-website.svg";
+import milkTeaPlaceholder from "../../Assets/Projects/milk-tea-management.svg";
 
 function Projects() {
   return (
@@ -18,73 +17,88 @@ function Projects() {
           My Recent <strong className="purple">Works </strong>
         </h1>
         <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
+          A portfolio of academic and applied projects focused on business
+          analysis, system design, data analysis and software development.
         </p>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={chatify}
+              imgPath={learnupPlaceholder}
               isBlog={false}
-              title="Chatify"
-              description="Personal Chat Room or Workspace to share resources and hangout with friends build with react.js, Material-UI, and Firebase. Have features which allows user for realtime messaging, image sharing as well as supports reactions on messages."
-              ghLink="https://github.com/soumyajit4419/Chatify"
-              demoLink="https://chatify-49.web.app/"
+              title="LearnUp"
+              description="Academic full-stack English learning platform covering course publishing, enrollment, assessment, progress tracking and AI-assisted learning."
+              tags={[
+                "Business Analysis",
+                "System Analysis",
+                "Requirements Analysis",
+                "React",
+                "Spring Boot",
+                "SQL Server",
+                "Gemini API",
+              ]}
+              caseStudyLink="/projects/learnup"
+              featured={true}
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={bitsOfCode}
+              imgPath={churnPlaceholder}
               isBlog={false}
-              title="Bits-0f-C0de"
-              description="My personal blog page build with Next.js and Tailwind Css which takes the content from makdown files and renders it using Next.js. Supports dark mode and easy to write blogs using markdown."
-              ghLink="https://github.com/soumyajit4419/Bits-0f-C0de"
-              demoLink="https://blogs.soumya-jit.tech/"
+              title="E-Commerce Customer Churn Analysis"
+              description="Analyzed 5,630 e-commerce customers using SQL to identify high-risk churn segments and translate behavioral patterns into retention priorities."
+              tags={[
+                "SQL",
+                "Customer Segmentation",
+                "Churn Analysis",
+                "Business Insight",
+                "Power BI",
+              ]}
+              caseStudyLink="/projects/customer-churn"
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={editor}
+              imgPath={belandPlaceholder}
               isBlog={false}
-              title="Editor.io"
-              description="Online code and markdown editor build with react.js. Online Editor which supports html, css, and js code with instant view of website. Online markdown editor for building README file which supports GFM, Custom Html tags with toolbar and instant preview.Both the editor supports auto save of work using Local Storage"
-              ghLink="https://github.com/soumyajit4419/Editor.io"
-              demoLink="https://editor.soumya-jit.tech/"              
+              title="BeLand"
+              description="Rental management system study focused on room information, contract flows, payment workflows and UI design for a student project."
+              tags={[
+                "System Analysis",
+                "Requirements",
+                "ERD",
+                "Use Case",
+                "Figma",
+                "HTML/CSS",
+              ]}
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={leaf}
+              imgPath={universityPlaceholder}
               isBlog={false}
-              title="Plant AI"
-              description="Used the plant disease dataset from Kaggle and trained a image classifer model using 'PyTorch' framework using CNN and Transfer Learning with 38 classes of various plant leaves. The model was successfully able to detect diseased and healthy leaves of 14 unique plants. I was able to achieve an accuracy of 98% by using Resnet34 pretrained model."
-              ghLink="https://github.com/soumyajit4419/Plant_AI"
-              demoLink="https://plant49-ai.herokuapp.com/"
+              title="University Website"
+              description="Responsive university website implemented from Figma as a team web design project with structured content and mobile-friendly layouts."
+              tags={[
+                "Figma",
+                "HTML",
+                "Tailwind CSS",
+                "JavaScript",
+                "Responsive Design",
+                "Git",
+              ]}
             />
           </Col>
 
           <Col md={4} className="project-card">
             <ProjectCard
-              imgPath={suicide}
+              imgPath={milkTeaPlaceholder}
               isBlog={false}
-              title="Ai For Social Good"
-              description="Using 'Natural Launguage Processing' for the detection of suicide-related posts and user's suicide ideation in cyberspace  and thus helping in sucide prevention."
-              ghLink="https://github.com/soumyajit4419/AI_For_Social_Good"
-              // demoLink="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" <--------Please include a demo link here
-            />
-          </Col>
-
-          <Col md={4} className="project-card">
-            <ProjectCard
-              imgPath={emotion}
-              isBlog={false}
-              title="Face Recognition and Emotion Detection"
-              description="Trained a CNN classifier using 'FER-2013 dataset' with Keras and tensorflow backened. The classifier sucessfully predicted the various types of emotions of human. And the highest accuracy obtained with the model was 60.1%.
-              Then used Open-CV to detect the face in an image and then pass the face to the classifer to predict the emotion of a person."
-              ghLink="https://github.com/soumyajit4419/Face_And_Emotion_Detection"
-              // demoLink="https://blogs.soumya-jit.tech/"      <--------Please include a demo link here 
+              title="Milk Tea Management System"
+              description="Desktop management application built with C# WinForms and SQL Server using a layered architecture for basic business operations."
+              tags={["C#", "WinForms", "SQL Server", "Database Design"]}
             />
           </Col>
         </Row>

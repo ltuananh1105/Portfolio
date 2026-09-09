@@ -1,0 +1,6 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="24" fill="#1B2430"/>
+  <rect x="22" y="32" width="84" height="60" rx="12" fill="#2A4A68"/>
+  <path d="M34 46H94M34 60H94M34 74H94" stroke="#6EE7F9" stroke-width="4" stroke-linecap="round"/>
+  <text x="64" y="112" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="700" font-family="Arial, sans-serif">SSMS</text>
+</svg>
