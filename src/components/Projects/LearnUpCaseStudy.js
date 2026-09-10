@@ -83,26 +83,30 @@ const mappings = [
 ];
 
 function EvidenceLink({ href, children }) {
-  return href ? (
+  if (!href) return null;
+
+  return (
     <a className="lu-button" href={href} target="_blank" rel="noreferrer">
       {children}
       <span aria-hidden="true"> ↗</span>
     </a>
-  ) : (
-    <button className="lu-button" disabled>
-      {children}
-    </button>
   );
 }
 function Actions({ closing = false }) {
   return (
     <div className="lu-actions">
-      <EvidenceLink href={evidenceLinks.documentation}>
-        {closing ? "Explore Full BA Documentation" : "View BA Documentation"}
-      </EvidenceLink>
-      <EvidenceLink href={evidenceLinks.source}>View Source Code</EvidenceLink>
+      {evidenceLinks.documentation && (
+        <EvidenceLink href={evidenceLinks.documentation}>
+          {closing ? "Explore Full BA Documentation" : "View BA Documentation"}
+        </EvidenceLink>
+      )}
+      {evidenceLinks.source && (
+        <EvidenceLink href={evidenceLinks.source}>
+          View Source Code
+        </EvidenceLink>
+      )}
       <Link className="lu-back" to="/project">
-        ← Back to Projects
+        ← Back to Work
       </Link>
     </div>
   );
@@ -276,35 +280,45 @@ function LearnUpCaseStudy() {
               id={chapterId(0)}
               aria-labelledby="lu-hero-title"
             >
+              <div className="lu-hero-top">
+                <Link className="lu-back-link" to="/project">
+                  ← All Work
+                </Link>
+                <span className="lu-case-tag">CASE STUDY 01</span>
+              </div>
               <p className="lu-eyebrow">
                 <span className="lu-dot" />
-                01 / Business Analysis Case Study
+                Business Analysis Case Study
               </p>
               <div className="lu-hero-grid">
-                <div>
-                  <h1 id="lu-hero-title">
-                    LEARN<span>UP</span>
-                    <span className="lu-title-period">.</span>
-                  </h1>
+                <div className="lu-hero-intro">
+                  <h1 id="lu-hero-title">LEARNUP</h1>
                   <p className="lu-platform">
-                    AI-Powered English Learning Platform
+                    Course Lifecycle &amp; Learning Management Analysis
                   </p>
                   <h2>
-                    From structured requirements
-                    <br />
-                    to <em>validated system behavior.</em>
+                    A retrospective Business Analysis case study examining how
+                    course management, administrative review, enrollment and
+                    learning requirements translate into system behavior.
                   </h2>
                   <p className="lu-subtitle">
-                    Business Analysis &amp; System Analysis Case Study
+                    Academic full-stack project with requirements, process,
+                    traceability, validation and system evidence.
                   </p>
                   <dl className="lu-meta">
+                    <div>
+                      <dt>Role</dt>
+                      <dd>BA Analysis + Development</dd>
+                    </div>
                     <div>
                       <dt>Project type</dt>
                       <dd>Academic Full-Stack Project</dd>
                     </div>
                     <div>
-                      <dt>Role</dt>
-                      <dd>BA Analysis + Development</dd>
+                      <dt>Focus</dt>
+                      <dd>
+                        Requirements · Process · Traceability · Validation
+                      </dd>
                     </div>
                   </dl>
                 </div>
@@ -316,7 +330,7 @@ function LearnUpCaseStudy() {
                     onExpand={expand}
                   />
                   <p className="lu-visual-note">
-                    THE PRODUCT / Course creation to learning
+                    Product evidence / Course creation to learning
                   </p>
                 </div>
               </div>
@@ -335,6 +349,11 @@ function LearnUpCaseStudy() {
               <p className="lu-footnote">
                 Documentation artifacts, not business performance metrics. Guest
                 is an unauthenticated actor.
+              </p>
+              <p className="lu-transparency-note">
+                BA documentation was formalized retrospectively from the
+                completed academic system to create a structured analysis case
+                study.
               </p>
               <div className="lu-overview-context">
                 <h3>
