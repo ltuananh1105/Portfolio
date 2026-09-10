@@ -12,12 +12,12 @@ function Projects() {
         <div className="project-intro">
           <p className="kicker">Featured work</p>
           <h1 className="project-heading">
-            Case study <strong className="purple">LearnUp</strong>
+            Featured case study: <strong className="purple">LearnUp</strong>
           </h1>
           <p className="project-summary">
-            This portfolio currently highlights one primary academic case study
-            focused on business analysis, system reasoning, traceability, and
-            validation.
+            A business analysis case study focused on requirements analysis,
+            process reasoning, traceability, and validation across a full
+            learning platform workflow.
           </p>
         </div>
         <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
@@ -25,8 +25,8 @@ function Projects() {
             <ProjectCard
               imgPath={learnupPlaceholder}
               isBlog={false}
-              title="LearnUp"
-              description="Academic full-stack English learning platform covering course publishing, enrollment, assessment, progress tracking, and AI-assisted learning."
+              title="LearnUp — Business Analysis Case Study"
+              description="Academic full-stack English learning platform covering course publishing, enrollment, assessment, progress tracking, and AI-assisted learning, with BA artifacts, validation, and traceability built into the project story."
               tags={[
                 "Business Analysis",
                 "System Analysis",
