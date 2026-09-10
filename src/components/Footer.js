@@ -4,12 +4,11 @@ import { AiOutlinePhone } from "react-icons/ai";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 function Footer() {
-  let date = new Date();
-  let year = date.getFullYear();
+  const year = new Date().getFullYear();
 
   return (
     <Container fluid className="footer">
-      <Row>
+      <Row className="align-items-center">
         <Col md="4" className="footer-copywright">
           <h3>Lê Tuấn Anh © {year}</h3>
         </Col>

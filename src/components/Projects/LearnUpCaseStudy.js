@@ -10,17 +10,17 @@ const chapters = [
   "Overview",
   "Process",
   "Requirements",
-  "System Design",
+  "Traceability",
   "Validation",
-  "Reflection",
+  "System Evidence",
 ];
 const chapterKeys = [
   "overview",
   "process",
   "requirements",
-  "system-design",
+  "traceability",
   "validation",
-  "reflection",
+  "system-evidence",
 ];
 const chapterId = (index) => `learnup-${index + 1}`;
 const number = (index) => String(index + 1).padStart(2, "0");
@@ -651,15 +651,39 @@ function LearnUpCaseStudy() {
           {activeChapter === "requirements" && (
             <Section
               index={2}
-              label="Requirements & Traceability"
+              label="Requirements Analysis"
               title={
                 <>
-                  Turning system needs
+                  Requirements Analysis
                   <br />
-                  into <em>validated behavior.</em>
+                  <em>from system need to testable behavior.</em>
                 </>
               }
+              intro="Student Enrollment is the primary requirement spotlight. The goal is to explain the documented need clearly before moving into formal evidence."
             >
+              <div className="lu-requirement-spotlight">
+                <div className="lu-spotlight-heading">
+                  <span className="lu-pill">Requirement spotlight</span>
+                  <h3>Student Enrollment</h3>
+                  <code>FR-02</code>
+                </div>
+                <p className="lu-statement">
+                  The documented requirement is that a learner can discover an
+                  eligible course, enroll through the system, and complete the
+                  transaction without creating duplicate enrollment records.
+                </p>
+                <div className="lu-spotlight-meta">
+                  <div>
+                    <span className="lu-eyebrow">Business rule</span>
+                    <p>Prevent Duplicate Enrollment</p>
+                    <code>BR-02</code>
+                  </div>
+                  <div>
+                    <span className="lu-eyebrow">Acceptance</span>
+                    <p>AC-07 · AC-08 · AC-09</p>
+                  </div>
+                </div>
+              </div>
               <div className="lu-requirement-counts">
                 {stats.slice(2).map(([count, label]) => (
                   <p key={label}>
@@ -668,10 +692,21 @@ function LearnUpCaseStudy() {
                   </p>
                 ))}
               </div>
-              <p className="lu-intro">
-                One concrete example: define enrollment, describe the user goal,
-                prevent duplicates, and specify acceptance.
-              </p>
+            </Section>
+          )}
+          {activeChapter === "traceability" && (
+            <Section
+              index={3}
+              label="Traceability"
+              title={
+                <>
+                  Traceability
+                  <br />
+                  <em>from objective to validated behavior.</em>
+                </>
+              }
+              intro="This is the signature BA view of the case study: one requirement, traced through business intent, rules, acceptance, and validation."
+            >
               <div className="lu-signature">
                 <div className="lu-trace-intro">
                   <span className="lu-pill">
@@ -723,17 +758,18 @@ function LearnUpCaseStudy() {
               </div>
             </Section>
           )}
-          {activeChapter === "system-design" && (
+          {activeChapter === "system-evidence" && (
             <Section
-              index={3}
-              label="System Design"
+              index={5}
+              label="System Evidence"
               title={
                 <>
-                  From requirements
+                  System Evidence
                   <br />
-                  <em>to system structure.</em>
+                  <em>how requirements connect to implementation.</em>
                 </>
               }
+              intro="This chapter proves technical understanding without allowing implementation details to overpower the BA story."
             >
               <LearnUpSwitcher
                 id="lu-system"

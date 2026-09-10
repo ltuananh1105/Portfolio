@@ -7,26 +7,33 @@ function Home2() {
   return (
     <Container fluid className="home-about-section" id="about">
       <Container>
-        <Row>
+        <Row className="align-items-center">
           <Col md={8} className="home-about-description">
-            <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="purple"> INTRODUCE </span> MYSELF
+            <p className="kicker">About me</p>
+            <h1>
+              I connect <span className="purple">business thinking</span> with
+              practical <span className="purple">system outcomes</span>.
             </h1>
             <p className="home-about-body">
               I am a Management Information Systems student at Ho Chi Minh City
-              Open University, with a strong interest in Business Analysis and
-              System Analysis.
+              Open University, with a strong interest in Business Analysis,
+              Requirements Analysis, and Data-informed decision making.
               <br />
               <br />
-              I enjoy understanding business needs, modelling workflows,
-              structuring requirements and connecting them with software
-              systems.
+              My work focuses on understanding user needs, documenting clear
+              requirements, validating process flows, and translating those
+              findings into structured, testable system behavior.
               <br />
-              <br />
-              My technical foundation in SQL, databases, APIs and software
-              development helps me communicate across both business and
-              technical perspectives.
+              <br />I also enjoy working with SQL, API logic, and system design
+              so I can communicate effectively with both business stakeholders
+              and technical teams.
             </p>
+            <div className="home-focus-list">
+              <span>Requirements analysis</span>
+              <span>Process thinking</span>
+              <span>Traceability</span>
+              <span>Validation</span>
+            </div>
           </Col>
           <Col md={4} className="myAvtar">
             <Tilt>
