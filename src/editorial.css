@@ -16,6 +16,7 @@ body, .App { background: var(--editorial-bg); color: var(--editorial-ink); }
 .editorial-section { border-top: 1px solid var(--editorial-line); padding-top: 38px; margin-top: 46px; }
 .about-composition { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, .7fr); align-items: center; gap: 60px; }
 .about-illustration { width: 100%; max-width: 270px; justify-self: end; }
+.about-portrait { display: block; width: 100%; max-width: 300px; height: auto; justify-self: end; border-radius: 12px; box-shadow: 0 10px 28px rgba(37, 35, 48, .08); }
 .analysis-columns { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 42px; margin-top: 32px; }
 .foundation-columns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 48px; margin-top: 24px; }
 .foundation-columns ul { list-style: none; padding: 0; }
@@ -91,6 +92,7 @@ body, .App { background: var(--editorial-bg); color: var(--editorial-ink); }
  .editorial-page { padding: 110px 22px 55px; }
  .about-composition, .analysis-columns, .foundation-columns, .resume-facts { grid-template-columns: minmax(0,1fr); }
  .about-illustration { max-width: 170px; justify-self: center; }
+ .about-portrait { max-width: 240px; justify-self: center; }
  .editorial-section { margin-top: 34px; padding-top: 28px; }
  .editorial-footer { justify-content: center; text-align: center; }
  .contact-details { flex-direction: column; gap: 10px; }

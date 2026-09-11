@@ -1,11 +1,11 @@
 import React from "react";
-import illustration from "../../Assets/about.png";
+import portrait from "../../Assets/anh_totnghiep.jpg";
 export default function About() {
   return <main className="editorial-page"><div className="editorial-shell">
     <header className="about-composition"><div><p className="editorial-eyebrow">About</p><h1>Business Analysis with a technical foundation.</h1>
       <p>I’m Lê Tuấn Anh, a Management Information Systems student at Ho Chi Minh City Open University, interested in Business Analysis and software product development.</p>
       <p>Through academic projects, I have practiced turning system needs into structured requirements, process flows, business rules, user stories, acceptance criteria, and validation scenarios. My development background also helps me communicate requirements with a better understanding of APIs, databases, and implementation constraints.</p></div>
-      <img src={illustration} alt="" className="about-illustration" /></header>
+      <img src={portrait} alt="Lê Tuấn Anh" className="about-portrait" width="853" height="1280" /></header>
     <section className="editorial-section"><h2>How I approach analysis</h2><div className="analysis-columns">{[
       ["Understand", "Clarify the problem, users, context, scope, and expected outcome."],
       ["Structure", "Translate findings into processes, requirements, rules, and acceptance criteria."],
