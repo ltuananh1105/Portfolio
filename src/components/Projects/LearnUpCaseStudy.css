@@ -474,13 +474,13 @@
 }
 
 .lu-trace-step .lu-label {
-  color: #c1b7d5;
+  color: #605d68;
 }
 
 .lu-trace-step strong {
   margin-top: 10px;
   font-size: 1.05rem;
-  color: #edf2f7;
+  color: #252330;
 }
 
 .lu-trace-step small {
@@ -488,7 +488,7 @@
   margin-top: 10px;
   font-size: 0.82rem;
   line-height: 1.5;
-  color: #d8e0ea;
+  color: #514e59;
 }
 
 .lu-trace-arrow {
@@ -496,7 +496,26 @@
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  color: #9a8eb9;
+  color: #74548d;
+}
+
+.lu-case-ending {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid #ded7df;
+  text-align: left;
+}
+
+.lu-case-ending p {
+  margin-bottom: 14px;
+}
+
+.lu-case-ending .lu-back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .lu-validation-summary {

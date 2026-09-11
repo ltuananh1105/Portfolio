@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import homeLogo from "../../Assets/home-main.svg";
-import Contact from "../Contact";
+
 import Home2 from "./Home2";
 
 
@@ -61,7 +61,7 @@ function Home() {
       </Container>
       <Home2 />
 
-      <Contact />
+
     </section>
   );
 }

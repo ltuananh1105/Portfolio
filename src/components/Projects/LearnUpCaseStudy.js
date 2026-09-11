@@ -778,24 +778,12 @@ function LearnUpCaseStudy() {
                   Next: {chapters[activeIndex + 1].label} →
                 </button>
               ) : (
-                <div className="lu-closure-block">
-                  <p className="lu-label">CASE STUDY COMPLETE</p>
-                  <h3>From requirement to system behavior.</h3>
-                  <div className="lu-inline-actions">
-                    {evidenceLinks.documentation && (
-                      <EvidenceLink href={evidenceLinks.documentation}>
-                        Full BA Documentation
-                      </EvidenceLink>
-                    )}
-                    {evidenceLinks.source && (
-                      <EvidenceLink href={evidenceLinks.source}>
-                        Source Code
-                      </EvidenceLink>
-                    )}
+                <div className="lu-case-ending">
+                  <p className="lu-label">END OF CASE STUDY</p>
+                  <p>LearnUp — Business Analysis Case Study</p>
                     <Link className="lu-back-link" to="/projects">
                       ← Back to Work
                     </Link>
-                  </div>
                 </div>
               )}
             </div>

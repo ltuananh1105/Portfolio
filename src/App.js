@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
+import Contact from "./components/Contact";
 import CareerGoals from "./components/CareerGoals";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
@@ -42,6 +43,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/project" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/career-goals" element={<CareerGoals />} />
           <Route path="/resume" element={<Resume />} />

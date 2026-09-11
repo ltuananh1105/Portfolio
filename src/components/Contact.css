@@ -1,0 +1,23 @@
+.contact-page { background: #f4f0ed; }
+.contact-shell { max-width: 880px; }
+.contact-heading { text-align: center; }
+.contact-heading-icon { display: inline-flex; padding: 16px; margin-bottom: 22px; border-radius: 50%; background: #e8dfed; color: #74548d; font-size: 1.8rem; }
+.contact-heading h1 { font-size: clamp(3rem, 6vw, 4.6rem); margin-bottom: 20px; }
+.contact-heading h1 span { color: #74548d; }
+.contact-heading .contact-intro { max-width: 590px; margin-bottom: 18px; }
+.contact-heading .contact-location { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: .88rem; }
+.contact-heading .editorial-button { gap: 12px; }
+.contact-methods { margin-top: 44px; border-top: 1px solid #d9cfdd; }
+.contact-method { display: flex; align-items: center; gap: 20px; padding: 24px 18px; border-bottom: 1px solid #d9cfdd; color: #252330; text-decoration: none; }
+.contact-method:hover { color: #604376; background: #eee7f0; }
+.contact-method-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; flex-shrink: 0; background: #e8dfed; border-radius: 12px; color: #74548d; font-size: 1.35rem; }
+.contact-method-copy { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.contact-method-label { color: #605d68; font-size: .8rem; }
+.contact-method-value { font-size: 1.15rem; font-weight: 500; overflow-wrap: anywhere; }
+.contact-method-arrow { flex-shrink: 0; margin-left: auto; color: #74548d; font-size: 1.25rem; }
+@media (max-width: 575px) {
+  .contact-method { padding: 20px 0; gap: 12px; }
+  .contact-method-icon { width: 40px; height: 40px; }
+  .contact-method-value { font-size: .95rem; }
+  .contact-method-arrow { width: 16px; }
+}
