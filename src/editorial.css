@@ -20,6 +20,14 @@ body, .App { background: var(--editorial-bg); color: var(--editorial-ink); }
 .analysis-columns { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 42px; margin-top: 32px; }
 .foundation-columns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 48px; margin-top: 24px; }
 .foundation-columns ul { list-style: none; padding: 0; }
+.about-foundation-groups { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 32px; margin-top: 28px; }
+.about-foundation h3 { font-size: 1rem; line-height: 1.6; }
+.about-foundation h3 span { font-size: .75rem; color: #605d68; margin-right: 6px; font-weight: 400; }
+.about-foundation ul { list-style: none; padding: 0; margin: 18px 0 0; }
+.about-foundation .about-foundation-primary h3 { font-size: 1.15rem; font-weight: 600; }
+.about-foundation .about-foundation-primary li { color: #252330; font-weight: 500; }
+.about-foundation .about-foundation-exposure h3 { color: #605d68; font-weight: 400; }
+.about-foundation .about-foundation-exposure li { font-size: .92rem; }
 .career-stage { padding-bottom: 10px; }
 .editorial-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 22px; margin: 28px 0; }
 .editorial-actions a, .editorial-button, .editorial-back { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; color: var(--editorial-accent); text-decoration: none; }
@@ -89,6 +97,7 @@ body, .App { background: var(--editorial-bg); color: var(--editorial-ink); }
  .lu-case-section { padding-left: 24px; }
 }
 @media(max-width: 767px) {
+ .about-foundation-groups { grid-template-columns: minmax(0, 1fr); gap: 28px; }
  .editorial-page { padding: 110px 22px 55px; }
  .about-composition, .analysis-columns, .foundation-columns, .resume-facts { grid-template-columns: minmax(0,1fr); }
  .about-illustration { max-width: 170px; justify-self: center; }

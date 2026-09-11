@@ -11,6 +11,39 @@ export default function About() {
       ["Structure", "Translate findings into processes, requirements, rules, and acceptance criteria."],
       ["Validate", "Trace requirements to system behavior and check whether the implemented solution meets expectations."]
     ].map(([title,body],i)=><div key={title}><p className="editorial-eyebrow">0{i+1}</p><h3>{title}</h3><p>{body}</p></div>)}</div></section>
-    <section className="editorial-section"><h2>Foundation</h2><div className="foundation-columns"><div><h3>Business Analysis</h3><ul><li>Requirements Analysis</li><li>Process Modeling</li><li>Traceability</li><li>Validation</li></ul></div><div><h3>Technical</h3><ul><li>SQL / SQL Server</li><li>REST API</li><li>Draw.io</li><li>Git / GitHub</li></ul></div></div></section>
+    <section className="editorial-section about-foundation">
+      <h2>Foundation</h2>
+      <div className="about-foundation-groups">
+        <div className="about-foundation-primary">
+          <h3><span>01 /</span> Business Analysis</h3>
+          <ul>
+            <li>Requirements Analysis</li>
+            <li>Process Modeling</li>
+            <li>Traceability</li>
+            <li>Validation</li>
+          </ul>
+        </div>
+        <div>
+          <h3><span>02 /</span> Technical Foundation</h3>
+          <ul>
+            <li>SQL</li>
+            <li>SQL Server</li>
+            <li>REST API</li>
+            <li>JSON</li>
+            <li>Git / GitHub</li>
+          </ul>
+        </div>
+        <div className="about-foundation-exposure">
+          <h3><span>03 /</span> Programming Exposure</h3>
+          <ul>
+            <li>Java</li>
+            <li>Spring Boot</li>
+            <li>React</li>
+            <li>C#</li>
+            <li>C++</li>
+          </ul>
+        </div>
+      </div>
+    </section>
   </div></main>;
 }
