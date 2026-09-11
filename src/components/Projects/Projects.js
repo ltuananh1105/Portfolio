@@ -41,14 +41,6 @@ function Projects() {
   return (
     <main className="selected-work">
       <div className="selected-work__shell">
-        <header className="selected-work__intro">
-          <p className="selected-work__eyebrow">Work</p>
-          <h1>Selected Work</h1>
-          <p className="selected-work__summary">
-            Business analysis and data analysis projects focused on requirements,
-            systems, processes, and evidence-based decision making.
-          </p>
-        </header>
         <div className="selected-work__projects">
           {projects.map((project) => (
             <article className="work-entry" key={project.id} aria-labelledby={`${project.id}-title`}>
