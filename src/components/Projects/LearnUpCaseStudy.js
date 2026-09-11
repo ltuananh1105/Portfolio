@@ -17,13 +17,6 @@ const chapters = [
 const chapterKeys = chapters.map((chapter) => chapter.key);
 const number = (index) => String(index + 1).padStart(2, "0");
 
-const artifactStats = [
-  { value: 9, label: "Use Cases" },
-  { value: 10, label: "User Stories" },
-  { value: 18, label: "Acceptance Criteria" },
-  { value: 7, label: "Business Rules" },
-];
-
 const traceSequence = [
   {
     label: "WHY",
@@ -147,11 +140,11 @@ const implementationRefs = [
   },
 ];
 
-function EvidenceLink({ href, children }) {
+function TextLink({ href, children }) {
   if (!href) return null;
 
   return (
-    <a className="lu-button" href={href} target="_blank" rel="noreferrer">
+    <a className="lu-text-link" href={href} target="_blank" rel="noreferrer">
       {children}
       <span aria-hidden="true"> ↗</span>
     </a>
@@ -165,7 +158,7 @@ function Asset({ asset, onExpand }) {
     <figure className="lu-asset">
       <div className="lu-asset-meta">
         <span>{asset.type || "Evidence"}</span>
-        <span>Original asset</span>
+        <span>Original Diagram</span>
       </div>
       <button
         type="button"
@@ -174,7 +167,7 @@ function Asset({ asset, onExpand }) {
         aria-label={`Expand ${asset.title}`}
       >
         <img src={asset.src} alt={asset.title} loading="lazy" />
-        <span className="lu-expand">Open full evidence ↗</span>
+        <span className="lu-expand">Open full diagram ↗</span>
       </button>
       <figcaption>
         {asset.title}
@@ -290,70 +283,47 @@ function LearnUpCaseStudy() {
     <section className="lu-case-section">
       <header className="lu-chapter-header">
         <p className="lu-eyebrow">01 / OVERVIEW</p>
-        <h1>Understanding the system before defining requirements.</h1>
+        <h1>Understanding LearnUp</h1>
         <p className="lu-lead">
-          A retrospective analysis of the LearnUp academic system, structured
-          around course lifecycle, learning, and administration.
+          A retrospective business analysis of the LearnUp academic online learning platform, structured around course lifecycle, enrollment, and platform administration.
         </p>
       </header>
 
-      <div className="lu-meta-grid">
-        <div>
-          <span className="lu-meta-label">PROJECT</span>
-          <strong>LearnUp</strong>
-        </div>
-        <div>
-          <span className="lu-meta-label">TYPE</span>
-          <strong>Academic Full-Stack Project</strong>
-        </div>
-        <div>
-          <span className="lu-meta-label">ROLE</span>
-          <strong>BA Analysis + Development</strong>
-        </div>
-        <div>
-          <span className="lu-meta-label">ANALYSIS FOCUS</span>
-          <strong>Requirements · Process · Traceability · Validation</strong>
-        </div>
-      </div>
-
-      <div className="lu-stats-grid compact">
-        {artifactStats.map((stat) => (
-          <div key={stat.label} className="lu-stat-box">
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
+      {/* Snapshot */}
+      <div className="lu-snapshot-block">
+        <p className="lu-label">PROJECT SNAPSHOT</p>
+        <div className="lu-snapshot-grid">
+          <div>
+            <span className="lu-meta-label">PROJECT</span>
+            <strong>LearnUp</strong>
           </div>
-        ))}
-      </div>
-
-      <div className="lu-two-col">
-        <div>
-          <p className="lu-label">PROJECT CONTEXT</p>
-          <p className="lu-body-copy">
-            LearnUp is an academic English-learning platform supporting Student,
-            Teacher, and Admin roles.
-          </p>
-        </div>
-        <div>
-          <p className="lu-label">SYSTEM NEED</p>
-          <p className="lu-body-copy">
-            LearnUp needs to support the course lifecycle from content creation
-            and administrative review to enrollment, learning, assessment, and
-            progress tracking.
-          </p>
+          <div>
+            <span className="lu-meta-label">TYPE</span>
+            <strong>Academic Full-Stack System</strong>
+          </div>
+          <div>
+            <span className="lu-meta-label">ROLE</span>
+            <strong>BA Analysis &amp; Development</strong>
+          </div>
+          <div>
+            <span className="lu-meta-label">FOCUS</span>
+            <strong>Requirements · Process · Traceability · Validation</strong>
+          </div>
         </div>
       </div>
 
+      {/* Scope */}
       <div className="lu-scope-block">
-        <p className="lu-label">PROJECT SCOPE</p>
+        <p className="lu-label">SYSTEM CONTEXT &amp; SCOPE</p>
         <div className="lu-scope-grid">
           <article className="lu-scope-card">
             <h3>In Scope</h3>
             <ul>
               <li><strong>Course Lifecycle:</strong> Teacher course creation, chapter/lesson management, and quiz builder.</li>
               <li><strong>Course Review &amp; Publishing:</strong> Submission workflow with Admin Approval or Rejection (with reason).</li>
-              <li><strong>Student Enrollment:</strong> Course enrollment via simulated payment order processing and duplicate prevention.</li>
+              <li><strong>Student Enrollment:</strong> Course enrollment via order/simulated payment flow and duplicate prevention.</li>
               <li><strong>Learning &amp; Progress:</strong> Lesson access, completion tracking (0%–100%), and quiz attempt logging.</li>
-              <li><strong>AI Tutor:</strong> Authenticated AI learning assistant using Gemini API with SSE streaming response.</li>
+              <li><strong>AI Tutor:</strong> Authenticated AI learning assistant using Gemini API with SSE streaming.</li>
               <li><strong>Platform Administration:</strong> Admin management of platform users, categories, and revenue overview.</li>
             </ul>
           </article>
@@ -361,7 +331,7 @@ function LearnUpCaseStudy() {
           <article className="lu-scope-card out-of-scope">
             <h3>Out of Scope</h3>
             <ul>
-              <li><strong>Real Payment Gateway:</strong> Uses simulated payment processing only; no real banking integration.</li>
+              <li><strong>Real Payment Gateway:</strong> Uses simulated payment processing; no real banking integration.</li>
               <li><strong>Production Deployment:</strong> Evaluated and executed in local development environment.</li>
               <li><strong>Native Mobile App:</strong> Built as a responsive web application; no iOS/Android native apps.</li>
               <li><strong>Long-term AI Model:</strong> No long-term personalized learning model or historical student profiling.</li>
@@ -372,49 +342,60 @@ function LearnUpCaseStudy() {
         </div>
       </div>
 
+      {/* Primary Actors */}
       <div className="lu-actors">
-        <div className="lu-actors-header">
-          <p className="lu-label">PRIMARY ACTORS</p>
-        </div>
-        <div className="lu-actors-list">
-          <div>
-            <span className="lu-actor-index">01</span>
-            <h3>Student</h3>
+        <p className="lu-label">PRIMARY ACTORS</p>
+        <div className="lu-actors-editorial">
+          <div className="lu-actor-item">
+            <span className="lu-actor-num">01</span>
+            <div>
+              <h3>Student</h3>
+              <p>Discovers, enrolls, accesses lesson content, completes quizzes, and tracks learning progress.</p>
+            </div>
           </div>
-          <div>
-            <span className="lu-actor-index">02</span>
-            <h3>Teacher</h3>
+          <div className="lu-actor-item">
+            <span className="lu-actor-num">02</span>
+            <div>
+              <h3>Teacher</h3>
+              <p>Creates course content, manages chapters and quizzes, and submits courses for review.</p>
+            </div>
           </div>
-          <div>
-            <span className="lu-actor-index">03</span>
-            <h3>Admin</h3>
+          <div className="lu-actor-item">
+            <span className="lu-actor-num">03</span>
+            <div>
+              <h3>Admin</h3>
+              <p>Reviews submitted courses (approves/rejects) and administers platform users and categories.</p>
+            </div>
           </div>
-          <div className="lu-guest-box">
-            <span className="lu-actor-index">Guest</span>
-            <h3>Unauthenticated</h3>
+          <div className="lu-actor-item guest">
+            <span className="lu-actor-num">GUEST</span>
+            <div>
+              <h3>Unauthenticated User</h3>
+              <p>Browses public courses, views course details, registers, and logs in.</p>
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Objectives */}
       <div className="lu-objective-block">
-        <div className="lu-objective-header">
-          <p className="lu-label">OBJECTIVES</p>
-        </div>
+        <p className="lu-label">BUSINESS OBJECTIVES</p>
         <div className="lu-objective-grid">
           {[
-            "Course Management & Approval",
-            "Course Discovery & Learning",
-            "Learning Progress & Results",
-            "Platform Administration",
-          ].map((objective, index) => (
-            <div key={objective} className="lu-objective-item">
-              <code>OBJ-0{index + 1}</code>
-              <span>{objective}</span>
+            { id: "OBJ-01", title: "Course Lifecycle & Approval Workflow" },
+            { id: "OBJ-02", title: "Course Discovery & Enrollment" },
+            { id: "OBJ-03", title: "Learning Progress & Assessment" },
+            { id: "OBJ-04", title: "Platform Data & User Administration" },
+          ].map((item) => (
+            <div key={item.id} className="lu-objective-item">
+              <code>{item.id}</code>
+              <span>{item.title}</span>
             </div>
           ))}
         </div>
       </div>
 
+      {/* Transparency Note */}
       <div className="lu-note-inline">
         <p className="lu-label">TRANSPARENCY &amp; LIMITATIONS NOTE</p>
         <p>
@@ -428,112 +409,100 @@ function LearnUpCaseStudy() {
     <section className="lu-case-section">
       <header className="lu-chapter-header">
         <p className="lu-eyebrow">02 / PROCESS</p>
-        <h1>How the workflow moves from action to decision.</h1>
+        <h1>How the system moves from action to outcome</h1>
+        <p className="lu-lead">
+          Core business workflows mapped across user roles, validation gates, and state transitions.
+        </p>
       </header>
 
       <LearnUpSwitcher
         id="lu-process"
-        label="Process artifacts"
+        label="Process workflows"
         items={[
           {
             label: "Course Creation & Review",
             content: (
-              <>
+              <div className="lu-process-content">
                 <div className="lu-process-canvas">
                   <div className="lu-process-lane">
                     <span className="lu-process-role">Teacher</span>
                     <div className="lu-process-node">Create Course</div>
-                    <div className="lu-process-arrow" aria-hidden="true">
-                      ↓
-                    </div>
+                    <div className="lu-process-arrow" aria-hidden="true">↓</div>
                     <div className="lu-process-node">Manage Content</div>
-                    <div className="lu-process-arrow" aria-hidden="true">
-                      ↓
-                    </div>
+                    <div className="lu-process-arrow" aria-hidden="true">↓</div>
                     <div className="lu-process-node">Submit for Review</div>
                   </div>
 
-                  <div className="lu-process-connector" aria-hidden="true">
-                    →
-                  </div>
+                  <div className="lu-process-connector" aria-hidden="true">→</div>
 
                   <div className="lu-process-lane">
                     <span className="lu-process-role">System</span>
                     <div className="lu-process-node">Validate Submission</div>
-                    <div className="lu-process-arrow" aria-hidden="true">
-                      ↓
-                    </div>
-                    <div className="lu-process-node">Pending</div>
+                    <div className="lu-process-arrow" aria-hidden="true">↓</div>
+                    <div className="lu-process-node">Pending State</div>
                   </div>
 
-                  <div className="lu-process-connector" aria-hidden="true">
-                    →
-                  </div>
+                  <div className="lu-process-connector" aria-hidden="true">→</div>
 
                   <div className="lu-process-lane">
                     <span className="lu-process-role">Admin</span>
                     <div className="lu-process-node">Review Course</div>
-                    <div className="lu-process-arrow" aria-hidden="true">
-                      ↓
-                    </div>
-                    <div className="lu-process-node">Decision</div>
+                    <div className="lu-process-arrow" aria-hidden="true">↓</div>
+                    <div className="lu-process-node">Approve / Reject</div>
                   </div>
                 </div>
 
                 <div className="lu-process-branch-grid">
                   <article className="lu-branch-item">
                     <p className="lu-label">APPROVE</p>
-                    <p>Published</p>
+                    <p>Course status becomes Published and visible in public discovery.</p>
                   </article>
                   <article className="lu-branch-item">
                     <p className="lu-label">REJECT</p>
-                    <p>Record Reason</p>
-                    <p>Teacher Revises</p>
-                    <p>Resubmit</p>
+                    <p>Status becomes Rejected with reason recorded for Teacher revision.</p>
                   </article>
                   <article className="lu-branch-item">
                     <p className="lu-label">INVALID</p>
-                    <p>Remains Draft</p>
-                    <p>Teacher fixes content</p>
+                    <p>Remains Draft if required content/submission rules are not met.</p>
                   </article>
                 </div>
 
                 <div className="lu-rule-strip">
                   <div>
                     <p className="lu-label">TEACHER OWNERSHIP</p>
-                    <p>Only the course owner can manage the course.</p>
+                    <p>Only the course owner can manage or submit the course.</p>
                   </div>
                   <div>
                     <p className="lu-label">SUBMISSION VALIDATION</p>
-                    <p>Required conditions are checked before review.</p>
+                    <p>Required chapter and lesson rules are checked before review.</p>
                   </div>
                   <div>
-                    <p className="lu-label">ADMIN REVIEW</p>
-                    <p>Only Admin can approve or reject.</p>
+                    <p className="lu-label">ADMIN AUTHORITY</p>
+                    <p>Only Admin role can approve or reject submitted courses.</p>
                   </div>
                 </div>
 
                 <div className="lu-inline-actions">
                   <button
                     type="button"
-                    className="lu-button"
+                    className="lu-text-link-btn"
                     onClick={() => openDiagram(diagrams.courseReview)}
                   >
                     View detailed process diagram ↗
                   </button>
                 </div>
-              </>
+              </div>
             ),
           },
           {
             label: "Student Enrollment",
             content: (
-              <>
+              <div className="lu-process-content">
                 <div className="lu-enrollment-flow">
                   {[
                     "Select Course",
                     "Choose Enroll",
-                    "Authentication Check",
+                    "Auth Check",
                     "Availability Check",
                     "Existing Enrollment Check",
                     "Order / Simulated Payment",
@@ -541,15 +510,11 @@ function LearnUpCaseStudy() {
                     "Success",
                   ].map((step, index, array) => (
                     <React.Fragment key={step}>
-                      <div
-                        className={`lu-enrollment-step ${index === array.length - 1 ? "is-success" : ""}`}
-                      >
+                      <div className={`lu-enrollment-step ${index === array.length - 1 ? "is-success" : ""}`}>
                         {step}
                       </div>
                       {index < array.length - 1 && (
-                        <div className="lu-enrollment-arrow" aria-hidden="true">
-                          →
-                        </div>
+                        <div className="lu-enrollment-arrow" aria-hidden="true">→</div>
                       )}
                     </React.Fragment>
                   ))}
@@ -557,29 +522,29 @@ function LearnUpCaseStudy() {
 
                 <div className="lu-process-branch-grid">
                   <article className="lu-branch-item">
-                    <p className="lu-label">NOT AUTHENTICATED</p>
-                    <p>Require Login</p>
+                    <p className="lu-label">UNAUTHENTICATED</p>
+                    <p>Redirect to Login prior to starting enrollment flow.</p>
                   </article>
                   <article className="lu-branch-item">
                     <p className="lu-label">UNAVAILABLE</p>
-                    <p>Enrollment Unavailable</p>
+                    <p>Enrollment blocked if course is not in Published status.</p>
                   </article>
                   <article className="lu-branch-item">
                     <p className="lu-label">ALREADY ENROLLED</p>
-                    <p>Inform Student &amp; Prevent Duplicate</p>
+                    <p>Duplicate enrollment prevented; direct access given.</p>
                   </article>
                 </div>
 
                 <div className="lu-inline-actions">
                   <button
                     type="button"
-                    className="lu-button"
+                    className="lu-text-link-btn"
                     onClick={() => openDiagram(diagrams.enrollment)}
                   >
                     View detailed activity diagram ↗
                   </button>
                 </div>
-              </>
+              </div>
             ),
           },
         ]}
@@ -591,20 +556,36 @@ function LearnUpCaseStudy() {
     <section className="lu-case-section">
       <header className="lu-chapter-header">
         <p className="lu-eyebrow">03 / REQUIREMENTS</p>
-        <h1>From system need to testable behavior.</h1>
+        <h1>Structuring expected system behavior</h1>
+        <p className="lu-lead">
+          Formalized requirement inventory and spotlight traceability.
+        </p>
       </header>
 
+      {/* Stats line */}
+      <div className="lu-stats-summary-line">
+        <span>8 Functional Requirements</span>
+        <span className="dot">•</span>
+        <span>6 Non-Functional Requirements</span>
+        <span className="dot">•</span>
+        <span>7 Business Rules</span>
+        <span className="dot">•</span>
+        <span>10 User Stories</span>
+        <span className="dot">•</span>
+        <span>18 Acceptance Criteria</span>
+      </div>
+
+      {/* Spotlight */}
       <div className="lu-spotlight">
         <div className="lu-spotlight-header">
-          <span className="lu-chip">Requirement spotlight</span>
+          <span className="lu-chip">Requirement Spotlight</span>
           <div className="lu-spotlight-title-row">
             <h2>Student Enrollment</h2>
             <code>FR-02</code>
           </div>
         </div>
         <p className="lu-body-copy large">
-          The system must allow an eligible student to enroll in a course while
-          preventing duplicate enrollment.
+          The system shall allow eligible students to enroll in published courses via an order / simulated payment workflow while strictly preventing duplicate enrollments.
         </p>
         <div className="lu-spotlight-meta">
           <div>
@@ -618,12 +599,13 @@ function LearnUpCaseStudy() {
             <span>Prevent Duplicate Enrollment</span>
           </div>
           <div>
-            <p className="lu-label">ACCEPTANCE</p>
+            <p className="lu-label">ACCEPTANCE CRITERIA</p>
             <code>AC-07 / AC-08 / AC-09</code>
           </div>
         </div>
       </div>
 
+      {/* Requirement Inventory */}
       <div className="lu-inventory-section">
         <p className="lu-label">REQUIREMENT INVENTORY</p>
         <LearnUpSwitcher
@@ -652,18 +634,15 @@ function LearnUpCaseStudy() {
     <section className="lu-case-section">
       <header className="lu-chapter-header">
         <p className="lu-eyebrow">04 / TRACEABILITY</p>
-        <h1>Student Enrollment — Traceability Example</h1>
+        <h1>Connecting intent to validation</h1>
         <p className="lu-lead">
-          Tracing Student Enrollment end-to-end from business objective to validated system behavior.
+          Traceability example demonstrating how business objectives translate down to verified system behavior.
         </p>
       </header>
 
       <div className="lu-trace-panel">
         <div className="lu-trace-header">
           <span className="lu-chip">Student Enrollment — Traceability Example</span>
-          <span className="lu-trace-subtitle">
-            Why → What → Rule → Expectation → Validation → Result
-          </span>
         </div>
 
         <div className="lu-trace-chain">
@@ -675,9 +654,7 @@ function LearnUpCaseStudy() {
                 <small>{item.detail}</small>
               </div>
               {index < traceSequence.length - 1 && (
-                <div className="lu-trace-arrow" aria-hidden="true">
-                  →
-                </div>
+                <div className="lu-trace-arrow" aria-hidden="true">→</div>
               )}
             </React.Fragment>
           ))}
@@ -685,8 +662,8 @@ function LearnUpCaseStudy() {
       </div>
 
       {evidenceLinks.rtm && (
-        <div className="lu-inline-actions">
-          <EvidenceLink href={evidenceLinks.rtm}>View full RTM ↗</EvidenceLink>
+        <div className="lu-inline-actions" style={{ marginTop: "24px" }}>
+          <TextLink href={evidenceLinks.rtm}>View full RTM document on GitHub</TextLink>
         </div>
       )}
     </section>
@@ -696,18 +673,16 @@ function LearnUpCaseStudy() {
     <section className="lu-case-section">
       <header className="lu-chapter-header">
         <p className="lu-eyebrow">05 / VALIDATION</p>
-        <h1>Requirements should result in observable behavior.</h1>
+        <h1>Checking implemented behavior against expectations</h1>
+        <p className="lu-lead">
+          System behavior verified using test scenarios and UAT-style user goal validations.
+        </p>
       </header>
 
-      <div className="lu-validation-summary">
-        <div>
-          <strong>7</strong>
-          <span>Executed Test Scenarios</span>
-        </div>
-        <div>
-          <strong>14</strong>
-          <span>Verified UAT-style Scenarios</span>
-        </div>
+      <div className="lu-validation-summary-line">
+        <strong>7 Executed Test Scenarios</strong>
+        <span className="dot">•</span>
+        <strong>14 Verified UAT-Style Scenarios</strong>
       </div>
 
       <div className="lu-validation-table-wrap">
@@ -728,7 +703,7 @@ function LearnUpCaseStudy() {
                 <td><code>{row.req}</code></td>
                 <td>{row.expected}</td>
                 <td>{row.evidence}</td>
-                <td className="lu-result-pass">{row.result}</td>
+                <td className="lu-result-pass">✓ {row.result}</td>
               </tr>
             ))}
           </tbody>
@@ -748,14 +723,14 @@ function LearnUpCaseStudy() {
     <section className="lu-case-section">
       <header className="lu-chapter-header">
         <p className="lu-eyebrow">06 / SYSTEM EVIDENCE</p>
-        <h1>How requirements connect to implementation.</h1>
+        <h1>Connecting analysis to implementation</h1>
         <p className="lu-lead">
-          System evidence is presented in two distinct levels: visual analysis artifacts and direct codebase implementation references.
+          Evidence separated into visual analysis artifacts and source code implementation references.
         </p>
       </header>
 
       <div className="lu-evidence-level">
-        <p className="lu-label">LEVEL A — ANALYSIS ARTIFACTS</p>
+        <p className="lu-label">ANALYSIS ARTIFACTS</p>
         <LearnUpSwitcher
           id="lu-system-artifacts"
           label="System analysis artifacts"
@@ -795,15 +770,15 @@ function LearnUpCaseStudy() {
               content: <Asset asset={diagrams.courseReview} onExpand={openDiagram} />,
             },
             {
-              label: "Enrollment Activity Diagram",
+              label: "Enrollment Activity Flow",
               content: <Asset asset={diagrams.enrollment} onExpand={openDiagram} />,
             },
           ]}
         />
       </div>
 
-      <div className="lu-evidence-level" style={{ marginTop: "36px" }}>
-        <p className="lu-label">LEVEL B — IMPLEMENTATION REFERENCES &amp; SYSTEM MAPPINGS</p>
+      <div className="lu-evidence-level" style={{ marginTop: "40px" }}>
+        <p className="lu-label">IMPLEMENTATION REFERENCES</p>
         <div className="lu-impl-grid">
           {implementationRefs.map((ref) => (
             <article key={ref.title} className="lu-impl-card">
@@ -812,51 +787,16 @@ function LearnUpCaseStudy() {
                 <code>{ref.file}</code>
               </div>
               <p>{ref.desc}</p>
-              {ref.url && <EvidenceLink href={ref.url}>View File on GitHub</EvidenceLink>}
+              {ref.url && <TextLink href={ref.url}>View file on GitHub</TextLink>}
             </article>
           ))}
-        </div>
-
-        <div className="lu-access-model" style={{ marginTop: "24px" }}>
-          <div>
-            <p className="lu-label">AUTHENTICATION</p>
-            <h3>JwtAuthenticationFilter</h3>
-            <p style={{ margin: "6px 0 0", fontSize: "0.86rem", color: "#4b5563" }}>
-              BCrypt hashing + JWT token verification on protected endpoints.
-            </p>
-          </div>
-          <div>
-            <p className="lu-label">AUTHORIZATION</p>
-            <h3>SecurityConfig Rules</h3>
-            <p style={{ margin: "6px 0 0", fontSize: "0.86rem", color: "#4b5563" }}>
-              Role checks: Admin (Review, Users, Categories), Teacher (Content), Student (Enroll, Learn).
-            </p>
-          </div>
-          <div>
-            <p className="lu-label">OWNERSHIP</p>
-            <h3>Resource Ownership Validation</h3>
-            <p style={{ margin: "6px 0 0", fontSize: "0.86rem", color: "#4b5563" }}>
-              Verifies Course owner before allowing content edits or submission.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="lu-technical-foundation">
-        <p className="lu-label">TECHNICAL FOUNDATION</p>
-        <div className="lu-tech-list">
-          <span>React (Vite)</span>
-          <span>Java Spring Boot 3</span>
-          <span>MS SQL Server</span>
-          <span>Spring Security JWT</span>
-          <span>Gemini AI API (SSE)</span>
         </div>
       </div>
 
       <div className="lu-note-inline subtle">
         <p className="lu-label">DISCLOSURE</p>
         <p>
-          All implementation references map directly to real files in the DoAn project repository. No fabricated swagger screenshots, postman execution dumps, token dumps, or production logs are presented.
+          Implementation references map directly to verified files in the project repository. No fabricated swagger screenshots, postman execution dumps, token dumps, or production logs are presented.
         </p>
       </div>
     </section>
@@ -872,24 +812,13 @@ function LearnUpCaseStudy() {
   };
 
   return (
-    <main
-      className="learnup-viewer-page"
-      aria-label="LearnUp case study viewer"
-    >
-      <div
-        className="learnup-case-study-viewer"
-        role="dialog"
-        aria-modal="true"
-      >
+    <main className="learnup-viewer-page" aria-label="LearnUp case study viewer">
+      <div className="learnup-case-study-viewer" role="dialog" aria-modal="true">
         <header className="learnup-viewer-header">
           <div className="learnup-branding">
             <span className="learnup-brand">LEARNUP</span>
-            <span className="learnup-separator">/</span>
-            <span className="learnup-case-id">CASE STUDY 01</span>
-          </div>
-
-          <div className="learnup-header-title">
-            Course Lifecycle &amp; Learning Management
+            <span className="learnup-separator">|</span>
+            <span className="learnup-case-id">Business Analysis Case Study</span>
           </div>
 
           <button
@@ -898,38 +827,34 @@ function LearnUpCaseStudy() {
             onClick={closeViewer}
             aria-label="Close LearnUp case study and return to Work"
           >
-            CLOSE ×
+            Close ×
           </button>
         </header>
 
         <div className="learnup-viewer-body">
           <aside className="learnup-sidebar">
             <div className="learnup-sidebar-top">
-              <span className="lu-label">CHAPTER INDEX</span>
-              <strong>
-                {number(activeIndex)} / {chapters.length}
-              </strong>
+              <span className="lu-sidebar-title">CASE STUDY</span>
             </div>
 
-            <nav
-              className="learnup-sidebar-nav"
-              aria-label="LearnUp chapter navigation"
-            >
+            <nav className="learnup-sidebar-nav" aria-label="LearnUp chapter navigation">
               {chapters.map((chapter, index) => (
                 <button
                   type="button"
                   key={chapter.key}
                   className={activeChapter === chapter.key ? "is-active" : ""}
-                  aria-current={
-                    activeChapter === chapter.key ? "step" : undefined
-                  }
+                  aria-current={activeChapter === chapter.key ? "step" : undefined}
                   onClick={() => changeChapter(index)}
                 >
-                  <span>{number(index)}</span>
-                  {chapter.label}
+                  <span className="nav-num">{number(index)}</span>
+                  <span className="nav-label">{chapter.label}</span>
                 </button>
               ))}
             </nav>
+
+            <div className="learnup-sidebar-bottom">
+              <span>{number(activeIndex)} / {number(chapters.length - 1)}</span>
+            </div>
           </aside>
 
           <div className="learnup-content-pane" ref={chapterRef} tabIndex={-1}>
@@ -939,6 +864,7 @@ function LearnUpCaseStudy() {
               {activeIndex > 0 ? (
                 <button
                   type="button"
+                  className="lu-ctrl-btn"
                   onClick={() => changeChapter(activeIndex - 1)}
                 >
                   ← Previous: {chapters[activeIndex - 1].label}
@@ -948,12 +874,13 @@ function LearnUpCaseStudy() {
               )}
 
               <span className="lu-chapter-count">
-                {number(activeIndex)} / {chapters.length}
+                {number(activeIndex)} / {number(chapters.length - 1)}
               </span>
 
               {activeIndex < chapters.length - 1 ? (
                 <button
                   type="button"
+                  className="lu-ctrl-btn"
                   onClick={() => changeChapter(activeIndex + 1)}
                 >
                   Next: {chapters[activeIndex + 1].label} →
@@ -964,14 +891,14 @@ function LearnUpCaseStudy() {
                   <h3>From requirement to system behavior.</h3>
                   <div className="lu-inline-actions">
                     {evidenceLinks.documentation && (
-                      <EvidenceLink href={evidenceLinks.documentation}>
+                      <TextLink href={evidenceLinks.documentation}>
                         Full BA Documentation
-                      </EvidenceLink>
+                      </TextLink>
                     )}
                     {evidenceLinks.source && (
-                      <EvidenceLink href={evidenceLinks.source}>
-                        Source Code
-                      </EvidenceLink>
+                      <TextLink href={evidenceLinks.source}>
+                        Source Code Repository
+                      </TextLink>
                     )}
                     <Link className="lu-back-link" to="/projects">
                       ← Back to Work
