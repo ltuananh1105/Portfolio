@@ -17,12 +17,6 @@ const chapters = [
 const chapterKeys = chapters.map((chapter) => chapter.key);
 const number = (index) => String(index + 1).padStart(2, "0");
 
-const artifactStats = [
-  { value: 9, label: "Use Cases" },
-  { value: 10, label: "User Stories" },
-  { value: 18, label: "Acceptance Criteria" },
-  { value: 7, label: "Business Rules" },
-];
 
 const traceSequence = [
   {
@@ -264,7 +258,7 @@ function LearnUpCaseStudy() {
           return;
         }
 
-        closeViewer();
+        // The casebook is a page; Escape only dismisses expanded evidence.
       }
     };
 
@@ -274,7 +268,7 @@ function LearnUpCaseStudy() {
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
-      chapterRef.current?.scrollTo({
+      window.scrollTo({
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
           ? "auto"
           : "smooth",
@@ -290,13 +284,14 @@ function LearnUpCaseStudy() {
     <section className="lu-case-section">
       <header className="lu-chapter-header">
         <p className="lu-eyebrow">01 / OVERVIEW</p>
-        <h1>Understanding the system before defining requirements.</h1>
+        <h1>Understanding LearnUp</h1>
         <p className="lu-lead">
           A retrospective analysis of the LearnUp academic system, structured
           around course lifecycle, learning, and administration.
         </p>
       </header>
 
+      <p className="lu-label">PROJECT AT A GLANCE</p>
       <div className="lu-meta-grid">
         <div>
           <span className="lu-meta-label">PROJECT</span>
@@ -316,35 +311,39 @@ function LearnUpCaseStudy() {
         </div>
       </div>
 
-      <div className="lu-stats-grid compact">
-        {artifactStats.map((stat) => (
-          <div key={stat.label} className="lu-stat-box">
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="lu-two-col">
-        <div>
-          <p className="lu-label">PROJECT CONTEXT</p>
-          <p className="lu-body-copy">
-            LearnUp is an academic English-learning platform supporting Student,
-            Teacher, and Admin roles.
-          </p>
+      <section className="casebook-block"><p className="lu-label">PRODUCT PREVIEW</p><div className="evidence-placeholder"><span>Product screenshot — add real LearnUp interface</span><small>Real screenshot required · Placeholder, not evidence</small></div></section>
+      <section className="casebook-block"><p className="lu-label">WHAT THE SYSTEM COVERS</p><div className="foundation-columns">{[
+        ["Course Lifecycle", "Create, review, and publish course content."],
+        ["Student Enrollment", "Discover courses and enroll through simulated payment."],
+        ["Learning & Progress", "Access lessons, complete quizzes, and track progress."],
+        ["Platform Administration", "Manage users, categories, and course review."]
+      ].map(([title,copy]) => <div key={title}><h3>{title}</h3><p>{copy}</p></div>)}</div></section>
+      <div className="lu-actors">
+        <div className="lu-actors-header">
+          <p className="lu-label">PRIMARY ACTORS</p>
         </div>
-        <div>
-          <p className="lu-label">SYSTEM NEED</p>
-          <p className="lu-body-copy">
-            LearnUp needs to support the course lifecycle from content creation
-            and administrative review to enrollment, learning, assessment, and
-            progress tracking.
-          </p>
+        <div className="lu-actors-list">
+          <div>
+            <span className="lu-actor-index">01</span>
+            <h3>Student</h3>
+          </div>
+          <div>
+            <span className="lu-actor-index">02</span>
+            <h3>Teacher</h3>
+          </div>
+          <div>
+            <span className="lu-actor-index">03</span>
+            <h3>Admin</h3>
+          </div>
+          <div className="lu-guest-box">
+            <span className="lu-actor-index">Guest</span>
+            <h3>Unauthenticated</h3>
+          </div>
         </div>
       </div>
 
       <div className="lu-scope-block">
-        <p className="lu-label">PROJECT SCOPE</p>
+        <p className="lu-label">SCOPE</p><p>Course creation through learning and administration, evaluated in a local academic environment.</p><details><summary>Explore In Scope / Out of Scope</summary>
         <div className="lu-scope-grid">
           <article className="lu-scope-card">
             <h3>In Scope</h3>
@@ -370,32 +369,7 @@ function LearnUpCaseStudy() {
             </ul>
           </article>
         </div>
-      </div>
-
-      <div className="lu-actors">
-        <div className="lu-actors-header">
-          <p className="lu-label">PRIMARY ACTORS</p>
-        </div>
-        <div className="lu-actors-list">
-          <div>
-            <span className="lu-actor-index">01</span>
-            <h3>Student</h3>
-          </div>
-          <div>
-            <span className="lu-actor-index">02</span>
-            <h3>Teacher</h3>
-          </div>
-          <div>
-            <span className="lu-actor-index">03</span>
-            <h3>Admin</h3>
-          </div>
-          <div className="lu-guest-box">
-            <span className="lu-actor-index">Guest</span>
-            <h3>Unauthenticated</h3>
-          </div>
-        </div>
-      </div>
-
+      </details></div>
       <div className="lu-objective-block">
         <div className="lu-objective-header">
           <p className="lu-label">OBJECTIVES</p>
@@ -425,165 +399,11 @@ function LearnUpCaseStudy() {
   );
 
   const renderProcess = () => (
-    <section className="lu-case-section">
-      <header className="lu-chapter-header">
-        <p className="lu-eyebrow">02 / PROCESS</p>
-        <h1>How the workflow moves from action to decision.</h1>
-      </header>
-
-      <LearnUpSwitcher
-        id="lu-process"
-        label="Process artifacts"
-        items={[
-          {
-            label: "Course Creation & Review",
-            content: (
-              <>
-                <div className="lu-process-canvas">
-                  <div className="lu-process-lane">
-                    <span className="lu-process-role">Teacher</span>
-                    <div className="lu-process-node">Create Course</div>
-                    <div className="lu-process-arrow" aria-hidden="true">
-                      ↓
-                    </div>
-                    <div className="lu-process-node">Manage Content</div>
-                    <div className="lu-process-arrow" aria-hidden="true">
-                      ↓
-                    </div>
-                    <div className="lu-process-node">Submit for Review</div>
-                  </div>
-
-                  <div className="lu-process-connector" aria-hidden="true">
-                    →
-                  </div>
-
-                  <div className="lu-process-lane">
-                    <span className="lu-process-role">System</span>
-                    <div className="lu-process-node">Validate Submission</div>
-                    <div className="lu-process-arrow" aria-hidden="true">
-                      ↓
-                    </div>
-                    <div className="lu-process-node">Pending</div>
-                  </div>
-
-                  <div className="lu-process-connector" aria-hidden="true">
-                    →
-                  </div>
-
-                  <div className="lu-process-lane">
-                    <span className="lu-process-role">Admin</span>
-                    <div className="lu-process-node">Review Course</div>
-                    <div className="lu-process-arrow" aria-hidden="true">
-                      ↓
-                    </div>
-                    <div className="lu-process-node">Decision</div>
-                  </div>
-                </div>
-
-                <div className="lu-process-branch-grid">
-                  <article className="lu-branch-item">
-                    <p className="lu-label">APPROVE</p>
-                    <p>Published</p>
-                  </article>
-                  <article className="lu-branch-item">
-                    <p className="lu-label">REJECT</p>
-                    <p>Record Reason</p>
-                    <p>Teacher Revises</p>
-                    <p>Resubmit</p>
-                  </article>
-                  <article className="lu-branch-item">
-                    <p className="lu-label">INVALID</p>
-                    <p>Remains Draft</p>
-                    <p>Teacher fixes content</p>
-                  </article>
-                </div>
-
-                <div className="lu-rule-strip">
-                  <div>
-                    <p className="lu-label">TEACHER OWNERSHIP</p>
-                    <p>Only the course owner can manage the course.</p>
-                  </div>
-                  <div>
-                    <p className="lu-label">SUBMISSION VALIDATION</p>
-                    <p>Required conditions are checked before review.</p>
-                  </div>
-                  <div>
-                    <p className="lu-label">ADMIN REVIEW</p>
-                    <p>Only Admin can approve or reject.</p>
-                  </div>
-                </div>
-
-                <div className="lu-inline-actions">
-                  <button
-                    type="button"
-                    className="lu-button"
-                    onClick={() => openDiagram(diagrams.courseReview)}
-                  >
-                    View detailed process diagram ↗
-                  </button>
-                </div>
-              </>
-            ),
-          },
-          {
-            label: "Student Enrollment",
-            content: (
-              <>
-                <div className="lu-enrollment-flow">
-                  {[
-                    "Select Course",
-                    "Choose Enroll",
-                    "Authentication Check",
-                    "Availability Check",
-                    "Existing Enrollment Check",
-                    "Order / Simulated Payment",
-                    "Create Enrollment",
-                    "Success",
-                  ].map((step, index, array) => (
-                    <React.Fragment key={step}>
-                      <div
-                        className={`lu-enrollment-step ${index === array.length - 1 ? "is-success" : ""}`}
-                      >
-                        {step}
-                      </div>
-                      {index < array.length - 1 && (
-                        <div className="lu-enrollment-arrow" aria-hidden="true">
-                          →
-                        </div>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
-
-                <div className="lu-process-branch-grid">
-                  <article className="lu-branch-item">
-                    <p className="lu-label">NOT AUTHENTICATED</p>
-                    <p>Require Login</p>
-                  </article>
-                  <article className="lu-branch-item">
-                    <p className="lu-label">UNAVAILABLE</p>
-                    <p>Enrollment Unavailable</p>
-                  </article>
-                  <article className="lu-branch-item">
-                    <p className="lu-label">ALREADY ENROLLED</p>
-                    <p>Inform Student &amp; Prevent Duplicate</p>
-                  </article>
-                </div>
-
-                <div className="lu-inline-actions">
-                  <button
-                    type="button"
-                    className="lu-button"
-                    onClick={() => openDiagram(diagrams.enrollment)}
-                  >
-                    View detailed activity diagram ↗
-                  </button>
-                </div>
-              </>
-            ),
-          },
-        ]}
-      />
+    <section className="lu-case-section"><header className="lu-chapter-header"><p className="lu-eyebrow">02 / PROCESS</p><h1>From action to decision.</h1><p className="lu-lead">Follow the original process models to understand decisions, role boundaries, and exception paths.</p></header>
+      <LearnUpSwitcher id="lu-process" label="Process artifacts" items={[
+        { label: "Course Creation & Review", content: <><Asset asset={diagrams.courseReview} onExpand={openDiagram} /><p>Only the course owner can manage content. Submission conditions are checked before review; only Admin can approve or reject.</p><button className="lu-button" onClick={() => openDiagram(diagrams.courseReview)}>Open Diagram ↗</button></> },
+        { label: "Student Enrollment", content: <><Asset asset={diagrams.enrollment} onExpand={openDiagram} /><p>Enrollment checks authentication, course availability, and existing enrollment before simulated payment and enrollment creation.</p><button className="lu-button" onClick={() => openDiagram(diagrams.enrollment)}>Open Diagram ↗</button></> }
+      ]} />
     </section>
   );
 
@@ -594,6 +414,7 @@ function LearnUpCaseStudy() {
         <h1>From system need to testable behavior.</h1>
       </header>
 
+      <p className="lu-lead">Requirements connect the documented system needs to acceptance expectations.</p><p className="casebook-counts">8 Functional Requirements · 6 Non-Functional Requirements · 7 Business Rules · 10 User Stories · 18 Acceptance Criteria</p>
       <div className="lu-spotlight">
         <div className="lu-spotlight-header">
           <span className="lu-chip">Requirement spotlight</span>
@@ -624,8 +445,7 @@ function LearnUpCaseStudy() {
         </div>
       </div>
 
-      <div className="lu-inventory-section">
-        <p className="lu-label">REQUIREMENT INVENTORY</p>
+      <details className="lu-inventory-section"><summary>Explore Requirement Inventory</summary>
         <LearnUpSwitcher
           id="lu-req-inventory"
           label="Requirement Inventory"
@@ -644,7 +464,7 @@ function LearnUpCaseStudy() {
             },
           ]}
         />
-      </div>
+      </details>
     </section>
   );
 
@@ -878,8 +698,7 @@ function LearnUpCaseStudy() {
     >
       <div
         className="learnup-case-study-viewer"
-        role="dialog"
-        aria-modal="true"
+
       >
         <header className="learnup-viewer-header">
           <div className="learnup-branding">
@@ -896,9 +715,9 @@ function LearnUpCaseStudy() {
             type="button"
             className="learnup-close"
             onClick={closeViewer}
-            aria-label="Close LearnUp case study and return to Work"
+            aria-label="Return to Work"
           >
-            CLOSE ×
+            Back to Work ←
           </button>
         </header>
 

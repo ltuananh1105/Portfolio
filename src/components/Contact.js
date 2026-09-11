@@ -1,0 +1,4 @@
+import React from "react";
+export default function Contact() {
+ return <section id="contact" className="contact-closing"><div className="editorial-shell editorial-narrow"><p className="editorial-eyebrow">Contact</p><h2>Let’s connect.</h2><p className="contact-intro">I’m currently looking for internship opportunities in Business Analysis and closely related software roles.</p><dl className="contact-details"><div><dt>Email</dt><dd><a href="mailto:ltuananh1105@gmail.com">ltuananh1105@gmail.com</a></dd></div><div><dt>Phone</dt><dd><a href="tel:0889724016">0889 724 016</a></dd></div><div><dt>GitHub</dt><dd><a href="https://github.com/ltuananh1105" target="_blank" rel="noopener noreferrer">github.com/ltuananh1105</a></dd></div></dl><div className="editorial-actions"><a className="editorial-button" href="mailto:ltuananh1105@gmail.com">Email Me →</a><a href="https://github.com/ltuananh1105" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div></section>;
+}

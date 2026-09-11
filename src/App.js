@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
+import CareerGoals from "./components/CareerGoals";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
 import LearnUpCaseStudy from "./components/Projects/LearnUpCaseStudy";
@@ -18,6 +19,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./editorial.css";
 
 function App() {
   const [load, upadateLoad] = useState(true);
@@ -41,6 +43,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/project" element={<Projects />} />
           <Route path="/about" element={<About />} />
+          <Route path="/career-goals" element={<CareerGoals />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/projects/learnup" element={<LearnUpCaseStudy />} />
           <Route path="/projects/customer-churn" element={<ChurnDetail />} />

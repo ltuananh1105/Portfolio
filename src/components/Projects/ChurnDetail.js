@@ -1,123 +1,15 @@
 import React from "react";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Particle from "../Particle";
-
-const keyFindings = [
-  "Customer churn was concentrated among contract users with low engagement",
-  "High cancellation risk appeared early in the first 90 days",
-  "Top churn drivers included product dissatisfaction and weak onboarding",
-  "Retention improvements were strongest when proactive support and usage alerts were in place",
-];
-
-const analysisSteps = [
-  "Business problem framing and KPI definition",
-  "Exploratory data analysis on usage, payment, contract, and support events",
-  "Customer segmentation and churn probability analysis",
-  "Actionable retention recommendations backed by evidence",
-];
-
-const dashboardHighlights = [
-  "Churn rate overview by segment",
-  "Customer health score by cohort",
-  "Renewal / cancellation pattern analysis",
-  "Retention recommendation tracker",
-];
-
-const recommendations = [
-  "Launch onboarding follow-up for new users in the first 30 days",
-  "Create proactive retention workflows for high-risk customers",
-  "Prioritize feature gaps identified in support incidents",
-  "Use customer health scoring to guide account management",
-];
-
-function ChurnDetail() {
-  return (
-    <Container fluid className="project-section case-study-section">
-      <Particle />
-      <Container>
-        <Row className="mb-4">
-          <Col>
-            <Button as={Link} to="/projects" variant="primary" className="mb-3">
-              ← Back to Projects
-            </Button>
-            <h1 className="project-heading">
-              Customer Churn <strong className="purple">Analysis</strong>
-            </h1>
-            <p style={{ color: "white" }}>
-              Data Analysis project focused on identifying churn patterns and
-              retention opportunities.
-            </p>
-          </Col>
-        </Row>
-
-        <Row className="g-4">
-          <Col md={6}>
-            <Card className="project-card-view">
-              <Card.Body>
-                <Card.Title>Project Objective</Card.Title>
-                <Card.Text>
-                  This project aimed to understand why customers disengage,
-                  which segments are most at risk, and what interventions could
-                  improve retention.
-                </Card.Text>
-                <ul className="case-study-list">
-                  {analysisSteps.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </Card.Body>
-            </Card>
-          </Col>
-
-          <Col md={6}>
-            <Card className="project-card-view">
-              <Card.Body>
-                <Card.Title>Key Findings</Card.Title>
-                <ul className="case-study-list">
-                  {keyFindings.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row className="mt-4">
-          <Col>
-            <Card className="project-card-view">
-              <Card.Body>
-                <Card.Title>Dashboard Highlights</Card.Title>
-                <div className="case-study-badges">
-                  {dashboardHighlights.map((item) => (
-                    <span key={item} className="ba-skill-tag">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row className="mt-4">
-          <Col>
-            <Card className="project-card-view">
-              <Card.Body>
-                <Card.Title>Recommendations</Card.Title>
-                <ul className="case-study-list">
-                  {recommendations.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-    </Container>
-  );
+const repository = "https://github.com/ltuananh1105/Ecommerce-Customer-Churn-Analysis";
+export default function ChurnDetail() {
+ return <main className="editorial-page"><article className="editorial-shell editorial-narrow">
+  <Link className="editorial-back" to="/project">← Back to Work</Link>
+  <header className="editorial-intro reading-intro"><p className="editorial-eyebrow">Data Analysis Case Study</p><h1>E-Commerce Customer Churn &amp; Retention Analysis</h1><p>SQL · Power BI · Customer Analytics</p></header>
+  <section className="editorial-section"><p className="editorial-eyebrow">01 / Overview</p><h2>Understanding where retention needs attention.</h2><p>An analysis of 5,630 customer records using SQL cleaning, feature engineering, and exploratory analysis to identify churn patterns and prioritize retention opportunities.</p></section>
+  <section className="editorial-section"><p className="editorial-eyebrow">02 / Business Question</p><h2>Which customer groups warrant retention effort first?</h2><p>Establish the overall churn baseline, examine customer tenure and service complaints, and compare product and payment segments to guide targeted recommendations.</p></section>
+  <section className="editorial-section"><p className="editorial-eyebrow">03 / Analysis Approach</p><ol><li>Clean the customer dataset in SQL Server and handle missing numerical values.</li><li>Engineer tenure and other analytical groupings.</li><li>Compare churn rates alongside segment sizes and the overall baseline.</li><li>Translate observed associations into retention recommendations, with limitations stated.</li></ol></section>
+  <section className="editorial-section"><p className="editorial-eyebrow">04 / Key Findings</p><h2>Early tenure and complaints stand out.</h2><ul><li>Overall churn: <strong>16.84%</strong> — 948 of 5,630 customers.</li><li>First six months: <strong>32.42%</strong> churn — 697 of 2,150 customers.</li><li>Customers with complaints: <strong>31.67%</strong>, compared with <strong>10.93%</strong> without complaints.</li><li>Mobile Phone category: <strong>27.40%</strong>; Cash on Delivery: <strong>24.90%</strong>.</li></ul><p>These are associations, not causal effects. Mean imputation may reduce variation, and small segments require caution.</p></section>
+  <section className="editorial-section"><p className="editorial-eyebrow">05 / Recommendations</p><ul><li>Prioritize onboarding and check-ins during the first six months.</li><li>Improve complaint resolution and follow up after resolution.</li><li>Investigate the Mobile Phone and Cash on Delivery customer journeys.</li></ul><p>These are proposed actions; measured retention improvements are not claimed.</p></section>
+  <section className="editorial-section"><p className="editorial-eyebrow">06 / Evidence</p><h2>SQL analysis and documented results.</h2><p>The repository records the analysis queries and results. Power BI is listed in the project documentation; a dashboard file or screenshot was not available in the inspected source.</p><div className="evidence-placeholder"><span>Power BI dashboard — add real project screenshot</span><small>Real screenshot required · Placeholder, not evidence</small></div><a className="editorial-button" href={repository} target="_blank" rel="noopener noreferrer">View project source and results ↗</a></section>
+ </article></main>;
 }
-
-export default ChurnDetail;

@@ -21,7 +21,7 @@ function NavBar() {
     <Navbar
       expanded={expand}
       fixed="top"
-      expand="md"
+      expand="lg"
       className={navColour ? "sticky" : "navbar"}
     >
       <Container>
@@ -43,7 +43,7 @@ function NavBar() {
             <Nav.Item>
               <Nav.Link
                 as={Link}
-                to="/projects"
+                to="/project"
                 onClick={() => updateExpanded(false)}
               >
                 Work
@@ -59,6 +59,7 @@ function NavBar() {
                 About
               </Nav.Link>
             </Nav.Item>
+<Nav.Item><Nav.Link as={Link} to="/career-goals" onClick={() => updateExpanded(false)}>Career Goals</Nav.Link></Nav.Item>
 
             <Nav.Item>
               <Nav.Link
