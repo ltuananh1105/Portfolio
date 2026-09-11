@@ -17,12 +17,11 @@ const chapters = [
 const chapterKeys = chapters.map((chapter) => chapter.key);
 const number = (index) => String(index + 1).padStart(2, "0");
 
-const requirementsStats = [
-  { value: 8, label: "Functional Requirements" },
-  { value: 6, label: "Non-Functional Requirements" },
-  { value: 7, label: "Business Rules" },
+const artifactStats = [
+  { value: 9, label: "Use Cases" },
   { value: 10, label: "User Stories" },
   { value: 18, label: "Acceptance Criteria" },
+  { value: 7, label: "Business Rules" },
 ];
 
 const traceSequence = [
@@ -57,68 +56,95 @@ const traceSequence = [
 const validationRows = [
   {
     scenario: "Duplicate Enrollment",
+    req: "FR-02 / BR-02 / AC-08",
     expected: "Duplicate enrollment is prevented",
     evidence: "TC-02 / UAT-08",
     result: "PASS",
   },
   {
     scenario: "Teacher Ownership",
+    req: "FR-04 / BR-04 / AC-03",
     expected: "Teacher B cannot modify Teacher A's course",
     evidence: "TC-04 / UAT-11",
     result: "PASS",
   },
   {
     scenario: "Unauthorized Course Review",
+    req: "FR-06 / BR-05 / AC-06",
     expected: "Student cannot approve or reject a course",
     evidence: "TC-06",
     result: "PASS",
   },
   {
     scenario: "AI Failure Handling",
+    req: "FR-08 / BR-07 / AC-17",
     expected: "Failure returns controlled behavior without hanging",
     evidence: "TC-07 / UAT-13",
     result: "PASS",
   },
 ];
 
-const apiMappings = [
-  {
-    id: "FR-05",
-    title: "Course Submission",
-    api: "/api/courses/{id}/submit",
-    logic: "Validation + ownership",
-    impact: "Course state / data",
-  },
-  {
-    id: "FR-06",
-    title: "Admin Review",
-    api: "Approve / reject behavior",
-    logic: "Admin authorization",
-    impact: "Course state",
-  },
-  {
-    id: "FR-02",
-    title: "Student Enrollment",
-    api: "Enrollment / order behavior",
-    logic: "Duplicate enrollment rule",
-    impact: "Enrollment / order data",
-  },
-  {
-    id: "FR-08",
-    title: "AI Tutor",
-    api: "/api/ai/chat/stream",
-    logic: "Gemini integration",
-    impact: "AI response",
-  },
-];
+const requirementInventory = {
+  functional: [
+    { id: "FR-01", title: "Public Course Discovery", br: "BRQ-02", desc: "System shall allow Guest and Student to discover, search, and view public course details." },
+    { id: "FR-02", title: "Student Enrollment", br: "BRQ-02", desc: "System shall allow Student to enroll in courses via an order / simulated payment workflow." },
+    { id: "FR-03", title: "Learning, Quiz & Progress", br: "BRQ-03, BRQ-04", desc: "System shall allow enrolled Students to access lesson content, attempt quizzes, and track progress (0%-100%)." },
+    { id: "FR-04", title: "Course Content Management", br: "BRQ-01", desc: "System shall allow Teachers to create and manage course chapters, lessons, and quizzes within their owned courses." },
+    { id: "FR-05", title: "Course Submission", br: "BRQ-01", desc: "System shall allow Teachers to submit eligible draft courses for Admin review." },
+    { id: "FR-06", title: "Course Review", br: "BRQ-01", desc: "System shall allow Admins to review submitted courses and either Approve (publish) or Reject (with reason)." },
+    { id: "FR-07", title: "Platform Administration", br: "BRQ-05", desc: "System shall provide Admins with platform-level user management and category management capabilities." },
+    { id: "FR-08", title: "AI Tutor", br: "BRQ-06", desc: "System shall allow authenticated users to send prompts and receive AI-assisted English learning responses via Gemini API." },
+  ],
+  nonFunctional: [
+    { id: "NFR-01", title: "Security", desc: "BCrypt password hashing, JWT authentication, Role-based access control, and Teacher resource ownership validation." },
+    { id: "NFR-02", title: "Data Integrity", desc: "Enforces email uniqueness, unique enrollment constraints, and progress tracking boundaries." },
+    { id: "NFR-03", title: "Usability", desc: "Responsive web interface with explicit loading states, modal dialogs, and error feedback." },
+    { id: "NFR-04", title: "Performance & Responsiveness", desc: "Supports streaming response via Server-Sent Events (SSE) for AI Tutor interactions." },
+    { id: "NFR-05", title: "Maintainability", desc: "Separation of concerns between React frontend, Spring Boot REST controllers, JPA services, and database layers." },
+    { id: "NFR-06", title: "Configuration & Portability", desc: "Externalized environment configuration for database credentials, JWT secrets, CORS, and Gemini API keys." },
+  ],
+  businessRules: [
+    { id: "BR-01", title: "Unique Email", desc: "Each user account must use a unique email address across the platform." },
+    { id: "BR-02", title: "Unique Enrollment", desc: "A student cannot create duplicate enrollments for the same course." },
+    { id: "BR-03", title: "Public Course Visibility", desc: "Only courses in the approved/published status are displayed in public course discovery." },
+    { id: "BR-04", title: "Teacher Resource Ownership", desc: "Teachers may only edit and manage course resources that belong to their explicit ownership." },
+    { id: "BR-05", title: "Course Review Authority", desc: "Only users with the Admin role are authorized to approve or reject submitted courses." },
+    { id: "BR-06", title: "Learning Progress Range", desc: "Learning progress values must strictly remain within the 0% to 100% range." },
+    { id: "BR-07", title: "AI Result Boundary", desc: "AI Tutor interactions cannot automatically generate, alter, or decide official student quiz results." },
+  ]
+};
 
-const systemFlowSteps = [
-  "User",
-  "Frontend",
-  "REST API",
-  "Business logic",
-  "Database / External AI Service",
-  "Response",
+const implementationRefs = [
+  {
+    title: "REST API & System Mapping",
+    file: "ba-docs/06-system-analysis/api-mapping.md",
+    url: evidenceLinks.apiMapping,
+    desc: "Traces Functional Requirements to REST API endpoints, controllers, and data entities.",
+  },
+  {
+    title: "Course Submission & Review Logic",
+    file: "backend/.../CourseController.java",
+    url: evidenceLinks.courseController,
+    desc: "Enforces submission validation, state transitions (Draft -> Pending -> Published/Rejected), and ownership check.",
+  },
+  {
+    title: "Security & Access Control Config",
+    file: "backend/.../security/SecurityConfig.java",
+    url: evidenceLinks.securityConfig,
+    desc: "Configures Spring Security, JWT filters, public endpoints, and Role-Based Access Control (Admin/Teacher/Student).",
+  },
+  {
+    title: "Enrollment Entity & Repository",
+    file: "backend/.../entity/Enrollment.java",
+    url: evidenceLinks.enrollmentEntity,
+    desc: "Database mapping for student enrollments enforcing unique constraints.",
+  },
+  {
+    title: "Gemini AI Tutor Controller",
+    file: "backend/.../AiController.java",
+    url: evidenceLinks.aiController,
+    desc: "Handles AI prompt processing and Server-Sent Events (SSE) streaming integration.",
+  },
 ];
 
 function EvidenceLink({ href, children }) {
@@ -155,6 +181,48 @@ function Asset({ asset, onExpand }) {
         <span> · Click to expand</span>
       </figcaption>
     </figure>
+  );
+}
+
+function RequirementList({ items }) {
+  const [expandedId, setExpandedId] = useState(null);
+
+  const toggle = (id) => {
+    setExpandedId((prev) => (prev === id ? null : id));
+  };
+
+  return (
+    <div className="lu-req-inventory-list">
+      {items.map((item) => {
+        const isOpen = expandedId === item.id;
+        return (
+          <div key={item.id} className={`lu-req-item ${isOpen ? "is-open" : ""}`}>
+            <button
+              type="button"
+              className="lu-req-item-header"
+              onClick={() => toggle(item.id)}
+              aria-expanded={isOpen}
+            >
+              <div className="lu-req-item-main">
+                <code>{item.id}</code>
+                <strong>{item.title}</strong>
+              </div>
+              <span className="lu-req-toggle-icon">{isOpen ? "−" : "+"}</span>
+            </button>
+            {isOpen && (
+              <div className="lu-req-item-body">
+                <p>{item.desc}</p>
+                {item.br && (
+                  <span className="lu-req-br-tag">
+                    Related BRQ: {item.br}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -248,6 +316,15 @@ function LearnUpCaseStudy() {
         </div>
       </div>
 
+      <div className="lu-stats-grid compact">
+        {artifactStats.map((stat) => (
+          <div key={stat.label} className="lu-stat-box">
+            <strong>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </div>
+        ))}
+      </div>
+
       <div className="lu-two-col">
         <div>
           <p className="lu-label">PROJECT CONTEXT</p>
@@ -263,6 +340,35 @@ function LearnUpCaseStudy() {
             and administrative review to enrollment, learning, assessment, and
             progress tracking.
           </p>
+        </div>
+      </div>
+
+      <div className="lu-scope-block">
+        <p className="lu-label">PROJECT SCOPE</p>
+        <div className="lu-scope-grid">
+          <article className="lu-scope-card">
+            <h3>In Scope</h3>
+            <ul>
+              <li><strong>Course Lifecycle:</strong> Teacher course creation, chapter/lesson management, and quiz builder.</li>
+              <li><strong>Course Review &amp; Publishing:</strong> Submission workflow with Admin Approval or Rejection (with reason).</li>
+              <li><strong>Student Enrollment:</strong> Course enrollment via simulated payment order processing and duplicate prevention.</li>
+              <li><strong>Learning &amp; Progress:</strong> Lesson access, completion tracking (0%–100%), and quiz attempt logging.</li>
+              <li><strong>AI Tutor:</strong> Authenticated AI learning assistant using Gemini API with SSE streaming response.</li>
+              <li><strong>Platform Administration:</strong> Admin management of platform users, categories, and revenue overview.</li>
+            </ul>
+          </article>
+
+          <article className="lu-scope-card out-of-scope">
+            <h3>Out of Scope</h3>
+            <ul>
+              <li><strong>Real Payment Gateway:</strong> Uses simulated payment processing only; no real banking integration.</li>
+              <li><strong>Production Deployment:</strong> Evaluated and executed in local development environment.</li>
+              <li><strong>Native Mobile App:</strong> Built as a responsive web application; no iOS/Android native apps.</li>
+              <li><strong>Long-term AI Model:</strong> No long-term personalized learning model or historical student profiling.</li>
+              <li><strong>Automated AI Grading:</strong> AI Tutor does not automatically grade or decide official quiz results.</li>
+              <li><strong>Production-Scale Testing:</strong> No commercial load testing or independent penetration testing.</li>
+            </ul>
+          </article>
         </div>
       </div>
 
@@ -310,10 +416,9 @@ function LearnUpCaseStudy() {
       </div>
 
       <div className="lu-note-inline">
-        <p className="lu-label">CASE STUDY NOTE</p>
+        <p className="lu-label">TRANSPARENCY &amp; LIMITATIONS NOTE</p>
         <p>
-          BA documentation was formalized retrospectively from the completed
-          academic system to create a structured analysis case study.
+          LearnUp was developed as a solo academic project with retrospective BA documentation formalized directly from the implemented codebase. No real client stakeholder interviews, commercial client sign-off, or production deployments were conducted. All validation scenarios were executed locally in the project environment.
         </p>
       </div>
     </section>
@@ -431,6 +536,7 @@ function LearnUpCaseStudy() {
                     "Authentication Check",
                     "Availability Check",
                     "Existing Enrollment Check",
+                    "Order / Simulated Payment",
                     "Create Enrollment",
                     "Success",
                   ].map((step, index, array) => (
@@ -460,7 +566,7 @@ function LearnUpCaseStudy() {
                   </article>
                   <article className="lu-branch-item">
                     <p className="lu-label">ALREADY ENROLLED</p>
-                    <p>Inform Student</p>
+                    <p>Inform Student &amp; Prevent Duplicate</p>
                   </article>
                 </div>
 
@@ -518,13 +624,26 @@ function LearnUpCaseStudy() {
         </div>
       </div>
 
-      <div className="lu-stats-grid">
-        {requirementsStats.map((stat) => (
-          <div key={stat.label} className="lu-stat-box">
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
-          </div>
-        ))}
+      <div className="lu-inventory-section">
+        <p className="lu-label">REQUIREMENT INVENTORY</p>
+        <LearnUpSwitcher
+          id="lu-req-inventory"
+          label="Requirement Inventory"
+          items={[
+            {
+              label: `Functional (${requirementInventory.functional.length})`,
+              content: <RequirementList items={requirementInventory.functional} />,
+            },
+            {
+              label: `Non-functional (${requirementInventory.nonFunctional.length})`,
+              content: <RequirementList items={requirementInventory.nonFunctional} />,
+            },
+            {
+              label: `Business Rules (${requirementInventory.businessRules.length})`,
+              content: <RequirementList items={requirementInventory.businessRules} />,
+            },
+          ]}
+        />
       </div>
     </section>
   );
@@ -533,16 +652,15 @@ function LearnUpCaseStudy() {
     <section className="lu-case-section">
       <header className="lu-chapter-header">
         <p className="lu-eyebrow">04 / TRACEABILITY</p>
-        <h1>One requirement. End-to-end evidence.</h1>
+        <h1>Student Enrollment — Traceability Example</h1>
         <p className="lu-lead">
-          Tracing Student Enrollment from business objective to validated system
-          behavior.
+          Tracing Student Enrollment end-to-end from business objective to validated system behavior.
         </p>
       </header>
 
       <div className="lu-trace-panel">
         <div className="lu-trace-header">
-          <span className="lu-chip">Enrollment / End-to-end evidence</span>
+          <span className="lu-chip">Student Enrollment — Traceability Example</span>
           <span className="lu-trace-subtitle">
             Why → What → Rule → Expectation → Validation → Result
           </span>
@@ -568,7 +686,7 @@ function LearnUpCaseStudy() {
 
       {evidenceLinks.rtm && (
         <div className="lu-inline-actions">
-          <EvidenceLink href={evidenceLinks.rtm}>View full RTM</EvidenceLink>
+          <EvidenceLink href={evidenceLinks.rtm}>View full RTM ↗</EvidenceLink>
         </div>
       )}
     </section>
@@ -584,11 +702,11 @@ function LearnUpCaseStudy() {
       <div className="lu-validation-summary">
         <div>
           <strong>7</strong>
-          <span>Test Scenarios</span>
+          <span>Executed Test Scenarios</span>
         </div>
         <div>
           <strong>14</strong>
-          <span>UAT-style Scenarios</span>
+          <span>Verified UAT-style Scenarios</span>
         </div>
       </div>
 
@@ -597,6 +715,7 @@ function LearnUpCaseStudy() {
           <thead>
             <tr>
               <th>SCENARIO</th>
+              <th>RELATED REQUIREMENT</th>
               <th>EXPECTED BEHAVIOR</th>
               <th>EVIDENCE</th>
               <th>RESULT</th>
@@ -605,7 +724,8 @@ function LearnUpCaseStudy() {
           <tbody>
             {validationRows.map((row) => (
               <tr key={row.scenario}>
-                <td>{row.scenario}</td>
+                <td><strong>{row.scenario}</strong></td>
+                <td><code>{row.req}</code></td>
                 <td>{row.expected}</td>
                 <td>{row.evidence}</td>
                 <td className="lu-result-pass">{row.result}</td>
@@ -616,10 +736,9 @@ function LearnUpCaseStudy() {
       </div>
 
       <div className="lu-note-inline subtle">
-        <p className="lu-label">VALIDATION CONTEXT</p>
+        <p className="lu-label">VALIDATION CONTEXT &amp; BOUNDARY</p>
         <p>
-          Validation was performed locally against the implemented academic
-          system using UAT-style scenarios. It was not client UAT.
+          Validation was performed locally against the implemented academic system using UAT-style scenarios. It was not client UAT.
         </p>
       </div>
     </section>
@@ -631,177 +750,113 @@ function LearnUpCaseStudy() {
         <p className="lu-eyebrow">06 / SYSTEM EVIDENCE</p>
         <h1>How requirements connect to implementation.</h1>
         <p className="lu-lead">
-          Technical evidence is used here to show how analyzed requirements are
-          supported by the implemented system.
+          System evidence is presented in two distinct levels: visual analysis artifacts and direct codebase implementation references.
         </p>
       </header>
 
-      <LearnUpSwitcher
-        id="lu-system"
-        label="System evidence artifacts"
-        items={[
-          {
-            label: "Use Case",
-            content: <Asset asset={diagrams.useCase} onExpand={openDiagram} />,
-          },
-          {
-            label: "Data Model",
-            content: (
-              <>
-                <Asset asset={diagrams.erd} onExpand={openDiagram} />
-                <div className="lu-entity-list">
-                  {[
-                    "Users",
-                    "Categories",
-                    "Courses",
-                    "Chapters",
-                    "Lessons",
-                    "Enrollments",
-                    "Orders",
-                    "Quizzes",
-                    "Questions",
-                    "Question Options",
-                    "Lesson Progress",
-                    "Quiz Results",
-                  ].map((entity) => (
-                    <span key={entity}>{entity}</span>
-                  ))}
-                </div>
-              </>
-            ),
-          },
-          {
-            label: "System Flow",
-            content: (
-              <div className="lu-system-flow">
-                <p className="lu-label">SYSTEM FLOW</p>
-                <div className="lu-system-flow-steps">
-                  {systemFlowSteps.map((step, index) => (
-                    <React.Fragment key={step}>
-                      <div className="lu-system-node">{step}</div>
-                      {index < systemFlowSteps.length - 1 && (
-                        <div className="lu-system-arrow" aria-hidden="true">
-                          →
-                        </div>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
+      <div className="lu-evidence-level">
+        <p className="lu-label">LEVEL A — ANALYSIS ARTIFACTS</p>
+        <LearnUpSwitcher
+          id="lu-system-artifacts"
+          label="System analysis artifacts"
+          items={[
+            {
+              label: "Use Case Diagram",
+              content: <Asset asset={diagrams.useCase} onExpand={openDiagram} />,
+            },
+            {
+              label: "ERD Data Model",
+              content: (
+                <>
+                  <Asset asset={diagrams.erd} onExpand={openDiagram} />
+                  <div className="lu-entity-list">
+                    {[
+                      "Users",
+                      "Categories",
+                      "Courses",
+                      "Chapters",
+                      "Lessons",
+                      "Enrollments",
+                      "Orders",
+                      "Quizzes",
+                      "Questions",
+                      "Question Options",
+                      "Lesson Progress",
+                      "Quiz Results",
+                    ].map((entity) => (
+                      <span key={entity}>{entity}</span>
+                    ))}
+                  </div>
+                </>
+              ),
+            },
+            {
+              label: "Course Review Process",
+              content: <Asset asset={diagrams.courseReview} onExpand={openDiagram} />,
+            },
+            {
+              label: "Enrollment Activity Diagram",
+              content: <Asset asset={diagrams.enrollment} onExpand={openDiagram} />,
+            },
+          ]}
+        />
+      </div>
+
+      <div className="lu-evidence-level" style={{ marginTop: "36px" }}>
+        <p className="lu-label">LEVEL B — IMPLEMENTATION REFERENCES &amp; SYSTEM MAPPINGS</p>
+        <div className="lu-impl-grid">
+          {implementationRefs.map((ref) => (
+            <article key={ref.title} className="lu-impl-card">
+              <div className="lu-impl-header">
+                <h3>{ref.title}</h3>
+                <code>{ref.file}</code>
               </div>
-            ),
-          },
-          {
-            label: "API Mapping",
-            content: (
-              <div className="lu-api-panel">
-                <div className="lu-system-flow-steps compact">
-                  <div className="lu-system-node">Requirement</div>
-                  <div className="lu-system-arrow" aria-hidden="true">
-                    →
-                  </div>
-                  <div className="lu-system-node">Workflow / UI</div>
-                  <div className="lu-system-arrow" aria-hidden="true">
-                    →
-                  </div>
-                  <div className="lu-system-node">REST API</div>
-                  <div className="lu-system-arrow" aria-hidden="true">
-                    →
-                  </div>
-                  <div className="lu-system-node">Business logic</div>
-                  <div className="lu-system-arrow" aria-hidden="true">
-                    →
-                  </div>
-                  <div className="lu-system-node">SQL data</div>
-                </div>
+              <p>{ref.desc}</p>
+              {ref.url && <EvidenceLink href={ref.url}>View File on GitHub</EvidenceLink>}
+            </article>
+          ))}
+        </div>
 
-                <div className="lu-api-mappings">
-                  {apiMappings.map((mapping) => (
-                    <article key={mapping.id} className="lu-api-card">
-                      <div className="lu-api-heading">
-                        <h3>{mapping.title}</h3>
-                        <code>{mapping.id}</code>
-                      </div>
-                      <div className="lu-api-row">
-                        <span className="lu-label">API / capability</span>
-                        <code>{mapping.api}</code>
-                      </div>
-                      <div className="lu-api-row">
-                        <span className="lu-label">Business logic</span>
-                        <p>{mapping.logic}</p>
-                      </div>
-                      <div className="lu-api-row">
-                        <span className="lu-label">
-                          {mapping.id === "FR-08" ? "Response" : "Data impact"}
-                        </span>
-                        <p>{mapping.impact}</p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-
-                <div className="lu-access-model">
-                  <div>
-                    <p className="lu-label">AUTHENTICATION</p>
-                    <h3>Who are you?</h3>
-                  </div>
-                  <div>
-                    <p className="lu-label">AUTHORIZATION</p>
-                    <h3>What can your role do?</h3>
-                  </div>
-                  <div>
-                    <p className="lu-label">OWNERSHIP</p>
-                    <h3>Is this resource yours?</h3>
-                  </div>
-                </div>
-
-                <div className="lu-note-inline subtle">
-                  <p className="lu-label">OWNERSHIP RULE</p>
-                  <p>
-                    A Teacher role does not automatically mean the teacher can
-                    modify every course. Ownership rules restrict course
-                    modification to the course owner.
-                  </p>
-                </div>
-              </div>
-            ),
-          },
-        ]}
-      />
+        <div className="lu-access-model" style={{ marginTop: "24px" }}>
+          <div>
+            <p className="lu-label">AUTHENTICATION</p>
+            <h3>JwtAuthenticationFilter</h3>
+            <p style={{ margin: "6px 0 0", fontSize: "0.86rem", color: "#4b5563" }}>
+              BCrypt hashing + JWT token verification on protected endpoints.
+            </p>
+          </div>
+          <div>
+            <p className="lu-label">AUTHORIZATION</p>
+            <h3>SecurityConfig Rules</h3>
+            <p style={{ margin: "6px 0 0", fontSize: "0.86rem", color: "#4b5563" }}>
+              Role checks: Admin (Review, Users, Categories), Teacher (Content), Student (Enroll, Learn).
+            </p>
+          </div>
+          <div>
+            <p className="lu-label">OWNERSHIP</p>
+            <h3>Resource Ownership Validation</h3>
+            <p style={{ margin: "6px 0 0", fontSize: "0.86rem", color: "#4b5563" }}>
+              Verifies Course owner before allowing content edits or submission.
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div className="lu-technical-foundation">
         <p className="lu-label">TECHNICAL FOUNDATION</p>
         <div className="lu-tech-list">
-          <span>React</span>
-          <span>Spring Boot</span>
-          <span>SQL Server</span>
-          <span>Gemini API</span>
+          <span>React (Vite)</span>
+          <span>Java Spring Boot 3</span>
+          <span>MS SQL Server</span>
+          <span>Spring Security JWT</span>
+          <span>Gemini AI API (SSE)</span>
         </div>
       </div>
 
-      <div className="lu-change-analysis">
-        <p className="lu-label">HYPOTHETICAL CHANGE ANALYSIS</p>
-        <div className="lu-change-flow">
-          <div>
-            <span>Simulated Payment</span>
-          </div>
-          <div className="lu-change-arrow" aria-hidden="true">
-            →
-          </div>
-          <div>
-            <span>Real Payment Gateway</span>
-          </div>
-        </div>
-        <div className="lu-impact-list">
-          <span>Requirements</span>
-          <span>Process</span>
-          <span>API</span>
-          <span>Data</span>
-          <span>Security</span>
-          <span>Testing</span>
-        </div>
-        <p className="lu-small-note">
-          This was a portfolio exercise for practicing Change Request and Impact
-          Analysis, not an actual client-requested change.
+      <div className="lu-note-inline subtle">
+        <p className="lu-label">DISCLOSURE</p>
+        <p>
+          All implementation references map directly to real files in the DoAn project repository. No fabricated swagger screenshots, postman execution dumps, token dumps, or production logs are presented.
         </p>
       </div>
     </section>

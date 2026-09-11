@@ -4,7 +4,16 @@ import useCase from "../../Assets/learnup/diagrams/learnup-overall-use-case.svg"
 import erd from "../../Assets/learnup/diagrams/learnup-erd.svg";
 
 // Import verified replacement assets here; null renders an explicit placeholder.
-export const evidenceLinks = { documentation: null, source: null, rtm: null };
+export const evidenceLinks = {
+  documentation: "https://github.com/ltuananh1105/DoAn/tree/main/ba-docs",
+  source: "https://github.com/ltuananh1105/DoAn",
+  rtm: "https://github.com/ltuananh1105/DoAn/blob/main/ba-docs/07-testing-validation/requirement-traceability-matrix.md",
+  apiMapping: "https://github.com/ltuananh1105/DoAn/blob/main/ba-docs/06-system-analysis/api-mapping.md",
+  securityConfig: "https://github.com/ltuananh1105/DoAn/blob/main/backend/src/main/java/com/learnup/backend/security/SecurityConfig.java",
+  courseController: "https://github.com/ltuananh1105/DoAn/blob/main/backend/src/main/java/com/learnup/backend/CourseController.java",
+  enrollmentEntity: "https://github.com/ltuananh1105/DoAn/blob/main/backend/src/main/java/com/learnup/backend/entity/Enrollment.java",
+  aiController: "https://github.com/ltuananh1105/DoAn/blob/main/backend/src/main/java/com/learnup/backend/AiController.java"
+};
 export const diagrams = {
   courseReview: { src: courseReview, title: "Course Creation & Review", type: "Process diagram" },
   enrollment: { src: enrollment, title: "Student Enrollment", type: "Activity Diagram" },
@@ -18,3 +27,4 @@ export const screenshots = [
   { src: null, title: "Student Learning / Progress", id: "FR-03", file: "student-learning.png", caption: "Access learning content and track lesson completion." },
   { src: null, title: "AI Tutor", id: "FR-08", file: "ai-tutor.png", caption: "Receive AI-assisted learning support through Gemini integration." },
 ];
+
