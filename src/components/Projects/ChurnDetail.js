@@ -38,7 +38,7 @@ function ChurnDetail() {
       <Container>
         <Row className="mb-4">
           <Col>
-            <Button as={Link} to="/project" variant="primary" className="mb-3">
+            <Button as={Link} to="/projects" variant="primary" className="mb-3">
               ← Back to Projects
             </Button>
             <h1 className="project-heading">

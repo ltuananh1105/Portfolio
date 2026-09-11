@@ -185,7 +185,7 @@ function LearnUpCaseStudy() {
   }
 
   const closeViewer = useCallback(() => {
-    navigate("/project");
+    navigate("/projects");
   }, [navigate]);
 
   useEffect(() => {
@@ -837,7 +837,12 @@ function LearnUpCaseStudy() {
             Course Lifecycle &amp; Learning Management
           </div>
 
-          <button type="button" className="learnup-close" onClick={closeViewer} aria-label="Close LearnUp case study and return to Work">
+          <button
+            type="button"
+            className="learnup-close"
+            onClick={closeViewer}
+            aria-label="Close LearnUp case study and return to Work"
+          >
             CLOSE ×
           </button>
         </header>
@@ -860,7 +865,9 @@ function LearnUpCaseStudy() {
                   type="button"
                   key={chapter.key}
                   className={activeChapter === chapter.key ? "is-active" : ""}
-                  aria-current={activeChapter === chapter.key ? "step" : undefined}
+                  aria-current={
+                    activeChapter === chapter.key ? "step" : undefined
+                  }
                   onClick={() => changeChapter(index)}
                 >
                   <span>{number(index)}</span>
@@ -911,7 +918,7 @@ function LearnUpCaseStudy() {
                         Source Code
                       </EvidenceLink>
                     )}
-                    <Link className="lu-back-link" to="/project">
+                    <Link className="lu-back-link" to="/projects">
                       ← Back to Work
                     </Link>
                   </div>
@@ -952,7 +959,11 @@ function LearnUpCaseStudy() {
           >
             +
           </button>
-          <button type="button" onClick={() => setZoom(100)} aria-label="Fit diagram to viewer">
+          <button
+            type="button"
+            onClick={() => setZoom(100)}
+            aria-label="Fit diagram to viewer"
+          >
             Fit
           </button>
           <span>Scroll to explore · Escape to close</span>

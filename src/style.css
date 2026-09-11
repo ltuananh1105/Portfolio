@@ -221,6 +221,7 @@ button:focus {
   width: 100%;
   height: 100%;
   z-index: 0;
+  pointer-events: none;
 }
 
 .home-section {
@@ -487,9 +488,24 @@ button:focus {
   padding-inline-start: 0 !important;
 }
 
-.contact-professional-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 24px 0; }
-.contact-professional-links a { gap: 8px; max-width: 100%; overflow-wrap: anywhere; }
-.contact-professional-links a:focus-visible, .home-about-social-links a:focus-visible, .footer-icons a:focus-visible { outline: 3px solid #806496; outline-offset: 4px; }
+.contact-professional-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+.contact-professional-links a {
+  gap: 8px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.contact-professional-links a:focus-visible,
+.home-about-social-links a:focus-visible,
+.footer-icons a:focus-visible {
+  outline: 3px solid #806496;
+  outline-offset: 4px;
+}
 
 .home-social-icons {
   position: relative !important;

@@ -34,7 +34,7 @@ function Home() {
               </p>
 
               <div className="home-cta">
-                <Link to="/project" className="primary-cta">
+                <Link to="/projects" className="primary-cta">
                   Explore Case Study →
                 </Link>
                 <Link to="/about" className="secondary-cta">
@@ -73,13 +73,27 @@ function Home() {
               opportunities in Ho Chi Minh City, Vietnam.
             </p>
             <div className="contact-professional-links">
-              <a href="mailto:ltuananh1105@gmail.com" className="primary-cta" aria-label="Email LE TUAN ANH at ltuananh1105@gmail.com">
+              <a
+                href="mailto:ltuananh1105@gmail.com"
+                className="primary-cta"
+                aria-label="Email LE TUAN ANH at ltuananh1105@gmail.com"
+              >
                 <AiOutlineMail aria-hidden="true" /> ltuananh1105@gmail.com
               </a>
-              <a href="https://github.com/ltuananh1105" className="secondary-cta" target="_blank" rel="noopener noreferrer" aria-label="LE TUAN ANH on GitHub">
+              <a
+                href="https://github.com/ltuananh1105"
+                className="secondary-cta"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LE TUAN ANH on GitHub"
+              >
                 <FaGithub aria-hidden="true" /> GitHub / ltuananh1105
               </a>
-              <a href="tel:0889724016" className="secondary-cta" aria-label="Call LE TUAN ANH at 0889 724 016">
+              <a
+                href="tel:0889724016"
+                className="secondary-cta"
+                aria-label="Call LE TUAN ANH at 0889 724 016"
+              >
                 <AiOutlinePhone aria-hidden="true" /> 0889 724 016
               </a>
             </div>

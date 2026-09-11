@@ -8,8 +8,10 @@ const projects = [
     number: "01",
     title: "LearnUp",
     type: "Business Analysis Case Study",
-    focus: "Requirements Analysis · Process Modeling · Draw.io · SQL · REST API",
-    description: "Academic English-learning platform analyzed as a structured Business Analysis case study.",
+    focus:
+      "Requirements Analysis · Process Modeling · Draw.io · SQL · REST API",
+    description:
+      "Academic English-learning platform analyzed as a structured Business Analysis case study.",
     highlights: [
       "Analyzed a 3-role system across 9 Use Cases covering course management, enrollment, learning, assessment, and administration.",
       "Structured 8 Functional Requirements, 6 Non-Functional Requirements, 7 Business Rules, 10 User Stories, and 18 Acceptance Criteria.",
@@ -43,7 +45,11 @@ function Projects() {
       <div className="selected-work__shell">
         <div className="selected-work__projects">
           {projects.map((project) => (
-            <article className="work-entry" key={project.id} aria-labelledby={`${project.id}-title`}>
+            <article
+              className="work-entry"
+              key={project.id}
+              aria-labelledby={`${project.id}-title`}
+            >
               <div className="work-entry__identity">
                 <p className="work-entry__number">Project {project.number}</p>
                 <h2 id={`${project.id}-title`}>{project.title}</h2>
@@ -51,16 +57,30 @@ function Projects() {
                 <p className="work-entry__focus">{project.focus}</p>
               </div>
               <div className="work-entry__content">
-                {project.description && <p className="work-entry__description">{project.description}</p>}
+                {project.description && (
+                  <p className="work-entry__description">
+                    {project.description}
+                  </p>
+                )}
                 <ul className="work-entry__highlights">
-                  {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                  {project.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
                 </ul>
-                {project.note && <p className="work-entry__note">{project.note}</p>}
+                {project.note && (
+                  <p className="work-entry__note">{project.note}</p>
+                )}
                 <div className="work-entry__actions">
                   <Link className="work-entry__primary" to={project.route}>
                     {project.cta} <span aria-hidden="true">→</span>
                   </Link>
-                  <a className="work-entry__github" href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} on GitHub (opens in a new tab)`}>
+                  <a
+                    className="work-entry__github"
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.title} on GitHub (opens in a new tab)`}
+                  >
                     GitHub <span aria-hidden="true">↗</span>
                   </a>
                 </div>
