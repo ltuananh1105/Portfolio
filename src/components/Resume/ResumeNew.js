@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import Particle from "../Particle";
 import { AiOutlineDownload } from "react-icons/ai";
 
+const resumeUrl = "https://drive.google.com/file/d/1jix8lDG4xTVP9HmcZIZRuW42iJ_d0p5D/view?usp=sharing";
+const resumeDownloadUrl = "https://drive.google.com/uc?export=download&id=1jix8lDG4xTVP9HmcZIZRuW42iJ_d0p5D";
+
 function ResumeNew() {
   return (
     <div>
@@ -15,16 +18,15 @@ function ResumeNew() {
               <strong className="purple">Resume</strong>
             </h1>
             <p>
-              My BA resume PDF is not included in this repository yet. Add the
-              final resume file to <strong>src/Assets/</strong> and update this
-              page to point to it.
+              Explore my background, skills, and academic projects in my
+              Business Analyst resume.
             </p>
             <div className="resume-placeholder-actions">
-              <Button variant="primary" disabled>
+              <Button variant="primary" href={resumeUrl} target="_blank" rel="noopener noreferrer">
                 <AiOutlineDownload />
                 &nbsp;View Resume
               </Button>
-              <Button variant="primary" disabled style={{ marginLeft: "10px" }}>
+              <Button variant="primary" href={resumeDownloadUrl} target="_blank" rel="noopener noreferrer" style={{ marginLeft: "10px" }}>
                 <AiOutlineDownload />
                 &nbsp;Download Resume
               </Button>

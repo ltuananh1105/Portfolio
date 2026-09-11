@@ -1,7 +1,12 @@
 import React, { useRef, useState } from "react";
 
-// Local state keeps the three evidence viewers independent.
+// Remount local selection when the viewer or its tab group changes.
 export default function LearnUpSwitcher({ id, label, items }) {
+  const groupKey = JSON.stringify([id, items.map((item) => item.label)]);
+  return <SwitcherTabs key={groupKey} id={id} label={label} items={items} />;
+}
+
+function SwitcherTabs({ id, label, items }) {
   const [selected, setSelected] = useState(0);
   const tabs = useRef([]);
 
@@ -26,6 +31,7 @@ export default function LearnUpSwitcher({ id, label, items }) {
         ref={(element) => { tabs.current[index] = element; }}
         id={`${id}-tab-${index}`}
         type="button"
+        className="lu-tab"
         role="tab"
         aria-selected={selected === index}
         aria-controls={`${id}-panel-${index}`}

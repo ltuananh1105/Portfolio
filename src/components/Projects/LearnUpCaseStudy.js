@@ -26,12 +26,32 @@ const requirementsStats = [
 ];
 
 const traceSequence = [
-  { label: "WHY", id: "OBJ-02 / BRQ-02", detail: "Course Discovery & Learning / Discovery & Enrollment" },
-  { label: "WHAT", id: "FR-02 / UC-05 / US-05", detail: "Student Enrollment / Enroll in Course" },
+  {
+    label: "WHY",
+    id: "OBJ-02 / BRQ-02",
+    detail: "Course Discovery & Learning / Discovery & Enrollment",
+  },
+  {
+    label: "WHAT",
+    id: "FR-02 / UC-05 / US-05",
+    detail: "Student Enrollment / Enroll in Course",
+  },
   { label: "RULE", id: "BR-02", detail: "Prevent Duplicate Enrollment" },
-  { label: "EXPECTATION", id: "AC-07 / AC-08 / AC-09", detail: "Documented acceptance criteria" },
-  { label: "VALIDATION", id: "TC-02 / UAT-07 / UAT-08", detail: "Validation evidence" },
-  { label: "RESULT", id: "✓ VALIDATED", detail: "Enrollment + Duplicate Prevention" },
+  {
+    label: "EXPECTATION",
+    id: "AC-07 / AC-08 / AC-09",
+    detail: "Documented acceptance criteria",
+  },
+  {
+    label: "VALIDATION",
+    id: "TC-02 / UAT-07 / UAT-08",
+    detail: "Validation evidence",
+  },
+  {
+    label: "RESULT",
+    id: "✓ VALIDATED",
+    detail: "Enrollment + Duplicate Prevention",
+  },
 ];
 
 const validationRows = [
@@ -150,6 +170,11 @@ function LearnUpCaseStudy() {
   const [expanded, setExpanded] = useState(null);
   const [zoom, setZoom] = useState(100);
 
+  function openDiagram(asset) {
+    setZoom(100);
+    setExpanded(asset);
+  }
+
   function changeChapter(index) {
     if (index < 0 || index >= chapters.length) return;
     navigate({
@@ -181,11 +206,12 @@ function LearnUpCaseStudy() {
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
-      chapterRef.current?.scrollIntoView({
+      chapterRef.current?.scrollTo({
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
           ? "auto"
           : "smooth",
-        block: "start",
+        top: 0,
+        left: 0,
       });
     });
 
@@ -386,7 +412,7 @@ function LearnUpCaseStudy() {
                   <button
                     type="button"
                     className="lu-button"
-                    onClick={() => setExpanded(diagrams.courseReview)}
+                    onClick={() => openDiagram(diagrams.courseReview)}
                   >
                     View detailed process diagram ↗
                   </button>
@@ -409,7 +435,9 @@ function LearnUpCaseStudy() {
                     "Success",
                   ].map((step, index, array) => (
                     <React.Fragment key={step}>
-                      <div className={`lu-enrollment-step ${index === array.length - 1 ? "is-success" : ""}`}>
+                      <div
+                        className={`lu-enrollment-step ${index === array.length - 1 ? "is-success" : ""}`}
+                      >
                         {step}
                       </div>
                       {index < array.length - 1 && (
@@ -440,7 +468,7 @@ function LearnUpCaseStudy() {
                   <button
                     type="button"
                     className="lu-button"
-                    onClick={() => setExpanded(diagrams.enrollment)}
+                    onClick={() => openDiagram(diagrams.enrollment)}
                   >
                     View detailed activity diagram ↗
                   </button>
@@ -614,13 +642,13 @@ function LearnUpCaseStudy() {
         items={[
           {
             label: "Use Case",
-            content: <Asset asset={diagrams.useCase} onExpand={setExpanded} />,
+            content: <Asset asset={diagrams.useCase} onExpand={openDiagram} />,
           },
           {
             label: "Data Model",
             content: (
               <>
-                <Asset asset={diagrams.erd} onExpand={setExpanded} />
+                <Asset asset={diagrams.erd} onExpand={openDiagram} />
                 <div className="lu-entity-list">
                   {[
                     "Users",
@@ -789,8 +817,15 @@ function LearnUpCaseStudy() {
   };
 
   return (
-    <main className="learnup-viewer-page" aria-label="LearnUp case study viewer">
-      <div className="learnup-case-study-viewer" role="dialog" aria-modal="true">
+    <main
+      className="learnup-viewer-page"
+      aria-label="LearnUp case study viewer"
+    >
+      <div
+        className="learnup-case-study-viewer"
+        role="dialog"
+        aria-modal="true"
+      >
         <header className="learnup-viewer-header">
           <div className="learnup-branding">
             <span className="learnup-brand">LEARNUP</span>
@@ -802,7 +837,7 @@ function LearnUpCaseStudy() {
             Course Lifecycle &amp; Learning Management
           </div>
 
-          <button type="button" className="learnup-close" onClick={closeViewer}>
+          <button type="button" className="learnup-close" onClick={closeViewer} aria-label="Close LearnUp case study and return to Work">
             CLOSE ×
           </button>
         </header>
@@ -816,12 +851,16 @@ function LearnUpCaseStudy() {
               </strong>
             </div>
 
-            <nav className="learnup-sidebar-nav" aria-label="LearnUp chapter navigation">
+            <nav
+              className="learnup-sidebar-nav"
+              aria-label="LearnUp chapter navigation"
+            >
               {chapters.map((chapter, index) => (
                 <button
                   type="button"
                   key={chapter.key}
                   className={activeChapter === chapter.key ? "is-active" : ""}
+                  aria-current={activeChapter === chapter.key ? "step" : undefined}
                   onClick={() => changeChapter(index)}
                 >
                   <span>{number(index)}</span>
@@ -836,7 +875,10 @@ function LearnUpCaseStudy() {
 
             <div className="lu-chapter-controls">
               {activeIndex > 0 ? (
-                <button type="button" onClick={() => changeChapter(activeIndex - 1)}>
+                <button
+                  type="button"
+                  onClick={() => changeChapter(activeIndex - 1)}
+                >
                   ← Previous: {chapters[activeIndex - 1].label}
                 </button>
               ) : (
@@ -848,7 +890,10 @@ function LearnUpCaseStudy() {
               </span>
 
               {activeIndex < chapters.length - 1 ? (
-                <button type="button" onClick={() => changeChapter(activeIndex + 1)}>
+                <button
+                  type="button"
+                  onClick={() => changeChapter(activeIndex + 1)}
+                >
                   Next: {chapters[activeIndex + 1].label} →
                 </button>
               ) : (
@@ -907,7 +952,7 @@ function LearnUpCaseStudy() {
           >
             +
           </button>
-          <button type="button" onClick={() => setZoom(100)}>
+          <button type="button" onClick={() => setZoom(100)} aria-label="Fit diagram to viewer">
             Fit
           </button>
           <span>Scroll to explore · Escape to close</span>
