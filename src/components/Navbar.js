@@ -59,7 +59,15 @@ function NavBar() {
                 About
               </Nav.Link>
             </Nav.Item>
-<Nav.Item><Nav.Link as={Link} to="/career-goals" onClick={() => updateExpanded(false)}>Career Goals</Nav.Link></Nav.Item>
+            <Nav.Item>
+              <Nav.Link
+                as={Link}
+                to="/career-goals"
+                onClick={() => updateExpanded(false)}
+              >
+                Career Goals
+              </Nav.Link>
+            </Nav.Item>
 
             <Nav.Item>
               <Nav.Link
