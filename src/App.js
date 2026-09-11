@@ -9,6 +9,7 @@ import CareerGoals from "./components/CareerGoals";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
 import LearnUpCaseStudy from "./components/Projects/LearnUpCaseStudy";
+import MilkTeaDetail from "./components/Projects/MilkTeaDetail";
 import ChurnDetail from "./components/Projects/ChurnDetail";
 import {
   BrowserRouter as Router,
@@ -48,6 +49,7 @@ function App() {
           <Route path="/career-goals" element={<CareerGoals />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/projects/learnup" element={<LearnUpCaseStudy />} />
+          <Route path="/projects/milk-tea" element={<MilkTeaDetail />} />
           <Route path="/projects/customer-churn" element={<ChurnDetail />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

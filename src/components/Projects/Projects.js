@@ -6,6 +6,8 @@ const projects = [
   {
     id: "learnup",
     number: "01",
+    category: "Featured Case Study",
+    emphasis: "featured",
     title: "LearnUp",
     type: "Business Analysis Case Study",
     focus:
@@ -25,6 +27,8 @@ const projects = [
   {
     id: "customer-churn",
     number: "02",
+    category: "Data Analysis",
+    emphasis: "selected",
     title: "E-Commerce Customer Churn & Retention Analysis",
     type: "Data Analysis Case Study",
     focus: "SQL · Power BI · Customer Analytics",
@@ -37,21 +41,42 @@ const projects = [
     route: "/projects/customer-churn",
     github: "https://github.com/ltuananh1105/Ecommerce-Customer-Churn-Analysis",
   },
+  {
+    id: "milk-tea",
+    number: "03",
+    category: "Technical Project · Software & Database",
+    emphasis: "additional",
+    title: "Milk Tea Shop Management System",
+    type: "Software / Database Project",
+    focus: "C# WinForms · SQL Server · Layered Architecture",
+    highlights: [
+      "Desktop application with account login, table management, and invoice records with line-item details.",
+      "Separates Windows Forms, business logic, data access, and data transfer objects; SQL Server stores tables, products, accounts, and invoices.",
+    ],
+    cta: "View Project",
+    route: "/projects/milk-tea",
+    github: "https://github.com/ltuananh1105/QuanLyBanTraSuaQ2A",
+  },
 ];
 
 function Projects() {
   return (
     <main className="selected-work">
       <div className="selected-work__shell">
+        <header className="selected-work__intro">
+          <p className="work-entry__number">Work</p>
+          <h1>Selected Work</h1>
+          <p>Selected academic and analytical projects across business analysis, system analysis, data, and software development.</p>
+        </header>
         <div className="selected-work__projects">
           {projects.map((project) => (
             <article
-              className="work-entry"
+              className={`work-entry work-entry--${project.emphasis}`}
               key={project.id}
               aria-labelledby={`${project.id}-title`}
             >
               <div className="work-entry__identity">
-                <p className="work-entry__number">Project {project.number}</p>
+                <p className="work-entry__number">{project.number} / {project.category}</p>
                 <h2 id={`${project.id}-title`}>{project.title}</h2>
                 <p className="work-entry__type">{project.type}</p>
                 <p className="work-entry__focus">{project.focus}</p>
